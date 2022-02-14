@@ -10,10 +10,11 @@ public class Main {
 		
 //		VentanaInicio v1 = new VentanaInicio();
 //		v1.setVisible(true);
-//		
-		VentanaPelicula plc = new VentanaPelicula("Encanto");
-		plc.setVisible(true);
 		
+		VentanaPelicula v3 = new VentanaPelicula("Encanto");
+		v3.setVisible(true);
+
+//		
 		
 	}
 	

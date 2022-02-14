@@ -214,6 +214,8 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 
 			VentanaInicio v1 = new VentanaInicio();
 			v1.setVisible(true);
+			
+			
 		}
 		else if(e.getSource()==peliculaEncanto) {
 			

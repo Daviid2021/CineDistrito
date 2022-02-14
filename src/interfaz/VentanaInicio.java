@@ -1,10 +1,6 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +42,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
 	private void iniciarComponentes() {
 
 		crearPaneles();
+		
 
 	}
 
@@ -94,6 +91,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
 
 	}
 
+	//no esta implementado en la interfaz
 	public void crearPanelUsuario() {
 
 		pnlUsuario = new JPanel();
@@ -143,6 +141,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
 		txtNombre = new JTextField();
 		txtNombre.setBounds(200, 75, 200, 30);
 		txtNombre.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		
 
 		pnlNombre.add(txtNombre);
 
