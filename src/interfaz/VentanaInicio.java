@@ -27,6 +27,10 @@ public class VentanaInicio extends JFrame implements ActionListener {
 	private JPasswordField pwdContraseña;
 	private JButton btnSalir;
 	private JButton btnIngreso;
+	
+	/*
+	 * Se crea el JFrame 
+	 */
 
 	public VentanaInicio() {
 
@@ -38,6 +42,10 @@ public class VentanaInicio extends JFrame implements ActionListener {
 		iniciarComponentes();
 
 	}
+	
+	/*
+	 * Se crean los paneles
+	 */
 
 	private void iniciarComponentes() {
 
@@ -91,7 +99,9 @@ public class VentanaInicio extends JFrame implements ActionListener {
 
 	}
 
-	//no esta implementado en la interfaz
+	/*
+	 * @deprecated
+	 */
 	public void crearPanelUsuario() {
 
 		pnlUsuario = new JPanel();

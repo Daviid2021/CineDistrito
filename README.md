@@ -1,9 +1,9 @@
 # Cine Distrito
 
-##Titulo del Proyecto: 
+## Titulo del Proyecto: 
 Cine Distrito
 
-###Version: 
+### Version: 
 
 ### Como arrancar el proyecto: 
 	

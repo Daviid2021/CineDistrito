@@ -223,38 +223,39 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 			
 			System.out.println("Selecciono: Encanto");
 			movieName = "Encanto";
-			pelicula = new VentanaPelicula(movieName); 
+			pelicula = new VentanaPelicula(movieName);
 			pelicula.setVisible(true);
 			this.dispose();
 		}
 		else if(e.getSource()==peliculaMoonfall) {
 			System.out.println("Selecciono: Moonfall");
 			movieName = "Moonfall";
-			pelicula = new VentanaPelicula(movieName); 
+			pelicula = new VentanaPelicula(movieName);
 			pelicula.setVisible(true);
 			this.dispose();
 		}
 		else if(e.getSource()==peliculaPaseo6) {
 			System.out.println("Selecciono: Paseo 6");
 			movieName = "Paseo6";
-			pelicula = new VentanaPelicula(movieName); 
+			pelicula = new VentanaPelicula(movieName);
 			pelicula.setVisible(true);
 			this.dispose();
 		}
 		else if(e.getSource()==peliculaScream) {
 			System.out.println("Selecciono: Scream");
 			movieName = "Scream";
-			pelicula = new VentanaPelicula(movieName); 
+			pelicula = new VentanaPelicula(movieName);
 			pelicula.setVisible(true);
 			this.dispose();
 		}
 		else if(e.getSource()==peliculaSpiderman) {
 			System.out.println("Selecciono: Spiderman");
 			movieName = "Spiderman";
-			pelicula = new VentanaPelicula(movieName); 
+			pelicula = new VentanaPelicula(movieName);
 			pelicula.setVisible(true);
 			this.dispose();
 		}
+	
 
 	}
 }

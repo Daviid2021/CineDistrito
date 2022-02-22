@@ -18,13 +18,17 @@ import javax.swing.JTextArea;
 
 public class VentanaPelicula extends JFrame implements ActionListener{
 
-	JPanel pnlPrincipal;
-	String nombrePelicula;
-	JButton btnSalir;
-	JLabel imgPelicula;
-	JComboBox<String> cmbCinesDisponibles;
-	JButton btnContinue;
-	String cineSeleccionado;
+	private JPanel pnlPrincipal;
+	private String nombrePelicula;
+    private	JButton btnSalir;
+	private	JLabel imgPelicula;
+	private JComboBox<String> cmbCinesDisponibles;
+	private JButton btnContinue;
+	private String cineSeleccionado;
+	private JLabel lblTitulo;
+	
+	
+	
 	
 	
 	public VentanaPelicula(String nombrePelicula) {
@@ -39,6 +43,8 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		
 	}
 	
+
+
 	
 	
 	private void iniciarComponentes() {
@@ -66,6 +72,17 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 
 		pnlPrincipal.add(btnSalir);
 		
+		btnContinue = new JButton();
+		btnContinue.setBounds(400, 550, 154, 54);
+		btnContinue.setContentAreaFilled(false);
+		//btnContinue.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
+		btnContinue.addActionListener(this);
+		ImageIcon imagenContinue = new ImageIcon("./img/imgBtnContinue.png");
+
+		btnContinue.setIcon(new ImageIcon(imagenContinue.getImage().getScaledInstance(btnContinue.getWidth(),
+				btnContinue.getHeight(), Image.SCALE_SMOOTH)));
+		
+		pnlPrincipal.add(btnContinue);
 		
 		
 		
@@ -82,7 +99,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		imgPelicula.setBounds(70, 100, 260, 410);
 		imgPelicula.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4, true));
 		
-		JLabel lblTitulo = new JLabel();
+		lblTitulo = new JLabel();
 		lblTitulo.setBounds(400, 100, 210, 50);
 		lblTitulo.setFont(new Font("Comic Sans MS", 3, 50));
 		
@@ -118,18 +135,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		
 		pnlPrincipal.add(lblCinesDisponibles);
 		
-		btnContinue = new JButton();
-		btnContinue.setBounds(400, 550, 154, 54);
-		btnContinue.setContentAreaFilled(false);
-		//btnContinue.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
-		btnContinue.addActionListener(this);
-		ImageIcon imagenContinue = new ImageIcon("./img/imgBtnContinue.png");
 
-		btnContinue.setIcon(new ImageIcon(imagenContinue.getImage().getScaledInstance(btnContinue.getWidth(),
-				btnContinue.getHeight(), Image.SCALE_SMOOTH)));
-		
-		pnlPrincipal.add(btnContinue);
-		
 		
 		
 
@@ -185,7 +191,6 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			
 			
 			
-			
 			break;
 			
 		case "Moonfall":
@@ -208,6 +213,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			cmbCinesDisponibles.removeItem("Unicentro");
 			
 			lblGeneros.setText("<html>• Ciencia Ficción <br>• Fantasia <br>• Aventura</html>");
+			
 			
 			break;
 			
@@ -232,6 +238,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			lblDirectoresPelicula.setText("Rodrigo Triana");
 			
 			lblGeneros.setText("<html>• Comedia </html>");
+			
 			
 			break;
 			
@@ -258,6 +265,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			
 			
 			
+			
 			break;
 			
 		case "Spiderman":
@@ -281,6 +289,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			lblDirectoresPelicula.setText("Marvel Comics y Stan Lee");
 			
 			lblGeneros.setText("<html>• Acción <br>• Aventura</html>");
+		
 			
 			
 			break;
@@ -312,11 +321,15 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			v2.setVisible(true);
 			
 			this.dispose();
+			
+			
 		}
 		else if(e.getSource()==cmbCinesDisponibles) {
 			
 		 cineSeleccionado = (String)cmbCinesDisponibles.getSelectedItem();
 			
+		 
+		 
 		}else if(e.getSource()==btnContinue) {
 			
 			if(cineSeleccionado.equals("Seleccione")) {
@@ -326,9 +339,15 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 				
 			}else {
 				
+				
 				System.out.println("Cine seleccionado: "+ cineSeleccionado);
+				VentanaIngresoUsuario v3 = new VentanaIngresoUsuario(cineSeleccionado, nombrePelicula);
+				v3.setVisible(true);
 				
 			}
+			
+			this.dispose();
+			
 			
 		}
 		

@@ -3,6 +3,13 @@ package principal;
 import interfaz.VentanaInicio;
 import interfaz.VentanaPelicula;
 import interfaz.VentanaCartelera;
+import interfaz.VentanaIngresoUsuario;
+
+
+/*
+ * @ author Jhonatan Moreno
+ * @ version 
+ */
 
 public class Main {
 	
@@ -13,6 +20,9 @@ public class Main {
 //		
 //		VentanaPelicula v3 = new VentanaPelicula("Encanto");
 //		v3.setVisible(true);
+//		VentanaIngresoUsuario v4 = new VentanaIngresoUsuario("");
+//		v4.setVisible(true);
+		
 
 //		
 		
