@@ -40,6 +40,8 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 		iniciarComponentes();
 
 	}
+	
+	
 
 	private void iniciarComponentes() {
 

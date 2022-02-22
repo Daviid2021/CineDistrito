@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -20,6 +22,10 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 	String nombrePelicula;
 	JButton btnSalir;
 	JLabel imgPelicula;
+	JComboBox<String> cmbCinesDisponibles;
+	JButton btnContinue;
+	String cineSeleccionado;
+	
 	
 	public VentanaPelicula(String nombrePelicula) {
 		
@@ -68,6 +74,8 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		
 	}
 	
+	
+	
 	private void crearPanelPelicula() {
 		
 		imgPelicula = new JLabel();
@@ -89,9 +97,66 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		lblLimiteEdad.setBounds(80, 520, 60, 90);
 		
 		JLabel lblGeneros = new JLabel();
-		lblGeneros.setBounds(170, 540, 140, 65);
+		lblGeneros.setBounds(170, 540, 200, 65);
 		lblGeneros.setFont(new Font("Andale Mono", 2, 18));
 		lblGeneros.setForeground(Color.BLACK);
+		
+		JLabel lblDirectores = new JLabel();
+		lblDirectores.setBounds(340, 340, 100, 20);
+		lblDirectores.setFont(new Font("Comic Sans MS", 1, 15));
+		lblDirectores.setText("Directores: ");
+		
+		JLabel lblDirectoresPelicula = new JLabel();
+		lblDirectoresPelicula.setBounds(340,  350,  390,  50);
+		lblDirectoresPelicula.setFont(new Font("Comic Sans MS", 0, 13));
+		//lblDirectoresPelicula.setText("Texto de Prueba");
+		
+		JLabel lblCinesDisponibles = new JLabel();
+		lblCinesDisponibles.setBounds(340, 410, 150, 15);
+		lblCinesDisponibles.setText("Cines Disponibles: ");
+		lblCinesDisponibles.setFont(new Font("Comic Sans MS", 1, 15));
+		
+		pnlPrincipal.add(lblCinesDisponibles);
+		
+		btnContinue = new JButton();
+		btnContinue.setBounds(400, 550, 154, 54);
+		btnContinue.setContentAreaFilled(false);
+		//btnContinue.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
+		btnContinue.addActionListener(this);
+		ImageIcon imagenContinue = new ImageIcon("./img/imgBtnContinue.png");
+
+		btnContinue.setIcon(new ImageIcon(imagenContinue.getImage().getScaledInstance(btnContinue.getWidth(),
+				btnContinue.getHeight(), Image.SCALE_SMOOTH)));
+		
+		pnlPrincipal.add(btnContinue);
+		
+		
+		
+
+		cmbCinesDisponibles = new JComboBox();
+		cmbCinesDisponibles.addActionListener(this);
+		cmbCinesDisponibles.setBounds(340, 430, 150, 20);
+		cmbCinesDisponibles.addItem("Seleccione");
+		cmbCinesDisponibles.addItem("Centro");
+		cmbCinesDisponibles.addItem("Titan Plaza");
+		cmbCinesDisponibles.addItem("Gran Estación");
+		cmbCinesDisponibles.addItem("Embajador");
+		cmbCinesDisponibles.addItem("Plaza Americas");
+		cmbCinesDisponibles.addItem("Unicentro");
+		
+		
+		
+		//La idea es crear un metodo que revise en la base de datos que cines cuentan con esta funcion
+		
+		pnlPrincipal.add(cmbCinesDisponibles);
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -116,6 +181,8 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			
 			lblGeneros.setText("<html>• Animación <br>• Aventura <br>• Comedia</html>");
 			
+			lblDirectoresPelicula.setText("Byron Howard y Jared Bush.");
+			
 			
 			
 			
@@ -134,6 +201,13 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			ImageIcon imgEdadMoonfall = new ImageIcon("./img/imgEdad10.png");
 			lblLimiteEdad.setIcon(new ImageIcon(imgEdadMoonfall.getImage().getScaledInstance(lblLimiteEdad.getWidth(),
 			lblLimiteEdad.getHeight(), Image.SCALE_SMOOTH)));
+			
+			lblDirectoresPelicula.setText("Roland Emmerich");
+			
+			//La idea es crear un metodo que revise en la base de datos que cines cuentan con esta funcion
+			cmbCinesDisponibles.removeItem("Unicentro");
+			
+			lblGeneros.setText("<html>• Ciencia Ficción <br>• Fantasia <br>• Aventura</html>");
 			
 			break;
 			
@@ -155,6 +229,9 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			lblLimiteEdad.getHeight(), Image.SCALE_SMOOTH)));
 			
 			
+			lblDirectoresPelicula.setText("Rodrigo Triana");
+			
+			lblGeneros.setText("<html>• Comedia </html>");
 			
 			break;
 			
@@ -174,6 +251,10 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			ImageIcon imgEdadScream = new ImageIcon("./img/imgEdad17.png");
 			lblLimiteEdad.setIcon(new ImageIcon(imgEdadScream.getImage().getScaledInstance(lblLimiteEdad.getWidth(),
 			lblLimiteEdad.getHeight(), Image.SCALE_SMOOTH)));
+			
+			lblDirectoresPelicula.setText(" Wes Craven");
+			
+			lblGeneros.setText("<html>• Terror <br>• Misterio </html>");
 			
 			
 			
@@ -197,6 +278,9 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			lblLimiteEdad.setIcon(new ImageIcon(imgEdadSpiderman.getImage().getScaledInstance(lblLimiteEdad.getWidth(),
 			lblLimiteEdad.getHeight(), Image.SCALE_SMOOTH)));
 			
+			lblDirectoresPelicula.setText("Marvel Comics y Stan Lee");
+			
+			lblGeneros.setText("<html>• Acción <br>• Aventura</html>");
 			
 			
 			break;
@@ -205,11 +289,15 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		
 		}
 	
+	
 		pnlPrincipal.add(lblGeneros);
 		pnlPrincipal.add(lblTitulo);
 		pnlPrincipal.add(imgPelicula);
 		pnlPrincipal.add(lblLimiteEdad);
 		pnlPrincipal.add(txaDescripcion);
+		pnlPrincipal.add(lblDirectores);
+		pnlPrincipal.add(lblDirectoresPelicula);
+	
 	}
 
 
@@ -224,6 +312,24 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 			v2.setVisible(true);
 			
 			this.dispose();
+		}
+		else if(e.getSource()==cmbCinesDisponibles) {
+			
+		 cineSeleccionado = (String)cmbCinesDisponibles.getSelectedItem();
+			
+		}else if(e.getSource()==btnContinue) {
+			
+			if(cineSeleccionado.equals("Seleccione")) {
+				
+				JOptionPane.showMessageDialog(null, "Porfavor seleccione un cine disponible", "Error", JOptionPane.ERROR_MESSAGE);
+				
+				
+			}else {
+				
+				System.out.println("Cine seleccionado: "+ cineSeleccionado);
+				
+			}
+			
 		}
 		
 	}
