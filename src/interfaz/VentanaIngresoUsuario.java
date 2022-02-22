@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,8 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 	private JTextField txtCorreo;
 	private JButton btnIngreso;
 	private JButton btnSalir;
+	private JButton btnOlvidoContraseña;
+	private JButton btnRegistrarUsuario;
 
 	public VentanaIngresoUsuario(String cineSeleccionado, String peliculaSeleccionada) {
 
@@ -63,12 +66,13 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		
 		
 		btnIngreso = new JButton();
-		btnIngreso.setBounds(280, 550, 134, 54);
+		btnIngreso.setBounds(280, 500, 134, 54);
 		btnIngreso.addActionListener(this);
 		btnIngreso.setContentAreaFilled(false);
 		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
 		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
 				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
+		
 
 		pnlPrincipal.add(btnIngreso);
 		
@@ -85,6 +89,40 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 
 		pnlPrincipal.add(btnSalir);
 
+		
+		btnOlvidoContraseña = new JButton();
+		//btnOlvidoContraseña.setText("¿Olvido la contraseña?");
+		
+		btnOlvidoContraseña.setBounds(20, 600, 300, 40);
+		btnOlvidoContraseña.setContentAreaFilled(false);
+		btnOlvidoContraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
+		btnOlvidoContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ImageIcon imagenOlvidoContraseña = new ImageIcon("./img/imgOlvidoContraseña.png");
+
+		btnOlvidoContraseña.setIcon(new ImageIcon(imagenOlvidoContraseña.getImage().getScaledInstance(btnOlvidoContraseña.getWidth(),
+				btnOlvidoContraseña.getHeight(), Image.SCALE_SMOOTH)));
+		
+		
+		pnlPrincipal.add(btnOlvidoContraseña);
+		
+		
+	
+		
+	
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		btnRegistrarUsuario = new JButton();
+		btnRegistrarUsuario.setBounds(370, 600, 300, 40);
+		btnRegistrarUsuario.setContentAreaFilled(false);
+		btnRegistrarUsuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
+		btnRegistrarUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ImageIcon imagenRegistrarUsuario = new ImageIcon("./img/imgRegistrarUsuario.png");
+
+		btnRegistrarUsuario.setIcon(new ImageIcon(imagenRegistrarUsuario.getImage().getScaledInstance(btnRegistrarUsuario.getWidth(),
+				btnRegistrarUsuario.getHeight(), Image.SCALE_SMOOTH)));
+		
+		
+		pnlPrincipal.add(btnRegistrarUsuario);
 
 		
 	}
@@ -182,7 +220,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 			VentanaPelicula miVentanaPelicula= new VentanaPelicula(peliculaSeleccionada);
 			miVentanaPelicula.setVisible(true);
 //			
-			
+			VentanaPelicula.cmbCinesDisponibles.removeItem("Seleccione");
 			
 		}
 		

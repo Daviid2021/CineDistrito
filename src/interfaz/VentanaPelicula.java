@@ -22,7 +22,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 	private String nombrePelicula;
     private	JButton btnSalir;
 	private	JLabel imgPelicula;
-	private JComboBox<String> cmbCinesDisponibles;
+	public static JComboBox<String> cmbCinesDisponibles;
 	private JButton btnContinue;
 	private String cineSeleccionado;
 	private JLabel lblTitulo;
