@@ -47,6 +47,17 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 
 	}
 	
+	public VentanaIngresoUsuario() {
+		
+		setSize(700, 700);
+		setTitle("Ingreso Cliente");
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		iniciarComponentes();
+		
+	}
+	
 	private void iniciarComponentes() {
 		
 		crearPanelPrincipal();
@@ -94,6 +105,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		//btnOlvidoContraseña.setText("¿Olvido la contraseña?");
 		
 		btnOlvidoContraseña.setBounds(20, 600, 300, 40);
+		btnOlvidoContraseña.addActionListener(this);
 		btnOlvidoContraseña.setContentAreaFilled(false);
 		btnOlvidoContraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
 		btnOlvidoContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -106,14 +118,10 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		pnlPrincipal.add(btnOlvidoContraseña);
 		
 		
-	
-		
-	
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
 		btnRegistrarUsuario = new JButton();
 		btnRegistrarUsuario.setBounds(370, 600, 300, 40);
 		btnRegistrarUsuario.setContentAreaFilled(false);
+		btnRegistrarUsuario.addActionListener(this);
 		btnRegistrarUsuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
 		btnRegistrarUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ImageIcon imagenRegistrarUsuario = new ImageIcon("./img/imgRegistrarUsuario.png");
@@ -123,6 +131,16 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		
 		
 		pnlPrincipal.add(btnRegistrarUsuario);
+		
+		
+		JLabel lblIngresoUsuario = new JLabel();
+		lblIngresoUsuario.setText("Ingreso Usuario");
+		lblIngresoUsuario.setBounds(180, 40, 500, 100);
+		lblIngresoUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 44));
+		
+		pnlPrincipal.add(lblIngresoUsuario);
+		
+		
 
 		
 	}
@@ -184,7 +202,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 
 
 	
-	public boolean esCorreo(String Correo) {
+	private boolean esCorreo(String Correo) {
 		Pattern patron = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher comparar=patron.matcher(Correo);
         return comparar.find();
@@ -223,7 +241,20 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 			VentanaPelicula.cmbCinesDisponibles.removeItem("Seleccione");
 			
 		}
-		
+		else if (e.getSource()==btnOlvidoContraseña) {
+			
+			System.out.println("\nIngresó a Ventana Restaurar Contraseña");
+			VentanaCambiarContraseña vcc = new VentanaCambiarContraseña();
+			this.dispose();
+			vcc.setVisible(true);
+			
+		}
+		else if (e.getSource()==btnRegistrarUsuario) {
+			
+			System.out.println("\ningresó a ventana Registrar Usuario");
+			
+			
+		}
 	}
 	
 

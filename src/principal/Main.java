@@ -2,6 +2,7 @@ package principal;
 
 import interfaz.VentanaInicio;
 import interfaz.VentanaPelicula;
+import interfaz.VentanaCambiarContraseña;
 import interfaz.VentanaCartelera;
 import interfaz.VentanaIngresoUsuario;
 
@@ -22,6 +23,9 @@ public class Main {
 //		v3.setVisible(true);
 //		VentanaIngresoUsuario v4 = new VentanaIngresoUsuario("");
 //		v4.setVisible(true);
+		
+//		VentanaCambiarContraseña v5 = new VentanaCambiarContraseña();
+//		v5.setVisible(true);
 		
 
 //		

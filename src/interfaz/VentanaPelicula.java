@@ -342,11 +342,12 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 				
 				System.out.println("Cine seleccionado: "+ cineSeleccionado);
 				VentanaIngresoUsuario v3 = new VentanaIngresoUsuario(cineSeleccionado, nombrePelicula);
+				this.dispose();
 				v3.setVisible(true);
 				
 			}
 			
-			this.dispose();
+		
 			
 			
 		}
