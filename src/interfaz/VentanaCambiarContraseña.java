@@ -27,6 +27,8 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 	private JTextField txtDocumento;
 	private JButton btnIngreso;
 	private JButton btnSalir;
+	private String Cine;
+	private String Pelicula;
 	
 	
 	public VentanaCambiarContraseña() {
@@ -38,6 +40,14 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		iniciarComponentes();
 
+		
+		
+	}
+	
+	public void enviarDatos(String Pelicula, String Cine) {
+		
+		this.Cine = Cine;
+		this.Pelicula = Pelicula;
 		
 		
 	}
@@ -150,36 +160,26 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnIngreso) {
 			
-			if(esDocumento(txtDocumento.getText())) {
+			if(isNumeric(txtDocumento.getText()) && esCorreo(txtCorreo.getText()) ) {
 				
-				System.out.println("Documento Valido");
+				System.out.println("Ingresando...");
 				
 			}else {
 				
-				JOptionPane.showMessageDialog(null, "Formato de Documento inválido\nIntentelo de nuevo", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Formato inválido, ingrese los datos nuevamente", "Error de Formato", JOptionPane.WARNING_MESSAGE);
 				txtDocumento.setText("");
 				txtCorreo.setText("");
 			}
 			
-			if(esCorreo(txtCorreo.getText())) {
-				
-				
-				
-				System.out.println("\nValidando información de Correo....");
-				
-			}else {
-				
-				JOptionPane.showMessageDialog(null, "Correo electrónico no valido", "Correo invalido", JOptionPane.ERROR_MESSAGE);
-				txtCorreo.setText("");
-				txtDocumento.setText("");
-				
-			}
+			
+			
+			
 
 			
 		}
 		else if(e.getSource()==btnSalir) {
 			
-			VentanaIngresoUsuario viu = new VentanaIngresoUsuario();
+			VentanaIngresoUsuario viu = new VentanaIngresoUsuario(Cine, Pelicula);
 			this.dispose();
 			viu.setVisible(true);
 			
@@ -189,12 +189,14 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		
 	}
 
-	private boolean esDocumento(String Documento) {
-		
-		Pattern patron = Pattern.compile("[0-1-2-3-4-5-6-7-8-9]+");
-        Matcher comparar=patron.matcher(Documento);
-        return comparar.find();
-		
+	
+	private boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
 	}
 	
 	private boolean esCorreo(String Correo) {
@@ -203,6 +205,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
         return comparar.find();
 		
 	}
+
 	
 	
 	

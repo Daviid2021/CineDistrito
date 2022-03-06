@@ -228,6 +228,12 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 				
 			}
 			
+			if(txtCorreo.getText().isEmpty() || pwdContraseña.getText().isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, "Porfavor ingrese todos los datos");
+				
+			}
+			
 			
 		}
 		else if(e.getSource()==btnSalir) {
@@ -245,6 +251,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 			
 			System.out.println("\nIngresó a Ventana Restaurar Contraseña");
 			VentanaCambiarContraseña vcc = new VentanaCambiarContraseña();
+			vcc.enviarDatos( peliculaSeleccionada, cineSeleccionado );
 			this.dispose();
 			vcc.setVisible(true);
 			
@@ -252,6 +259,10 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		else if (e.getSource()==btnRegistrarUsuario) {
 			
 			System.out.println("\ningresó a ventana Registrar Usuario");
+			VentanaRegistroUsuario vru = new VentanaRegistroUsuario();
+			vru.enviarDatos(peliculaSeleccionada, cineSeleccionado);
+			this.dispose();
+			vru.setVisible(true);
 			
 			
 		}

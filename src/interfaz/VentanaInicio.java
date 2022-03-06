@@ -78,10 +78,14 @@ public class VentanaInicio extends JFrame implements ActionListener {
 		pnlPrincipal.add(lblImgUsuario);
 
 		btnIngreso = new JButton();
-		btnIngreso.setBounds(240, 550, 220, 50);
-		btnIngreso.setText("Ingresar");
+		btnIngreso.setBounds(280, 550, 134, 54);
 		btnIngreso.addActionListener(this);
 		btnIngreso.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		btnIngreso.setContentAreaFilled(false);
+		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
+		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
+				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
+		
 
 		pnlPrincipal.add(btnIngreso);
 
