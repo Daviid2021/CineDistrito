@@ -81,7 +81,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		
 		
 		btnSalir = new JButton();
-		btnSalir.setBounds(20, 20, 60, 60);
+		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
 		btnSalir.addActionListener(this);
