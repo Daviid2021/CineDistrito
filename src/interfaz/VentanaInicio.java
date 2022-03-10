@@ -206,6 +206,20 @@ public class VentanaInicio extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(pnlPrincipal, "Porfavor, rellene todos los campos");
 
 			} else {
+				
+				if(String.valueOf(txtNombre.getText()).equals("admin") && myPass.equals("admin")) {
+					System.out.println("Bienvenido patron!");
+
+					VentanaAdmin va = new VentanaAdmin();
+					this.dispose();
+					va.setVisible(true);
+					
+					
+					
+					
+				}else {
+					
+				
 
 				System.out.println("Ingresó: " + "\n" + txtNombre.getText() + "\n" + myPass);
 
@@ -213,6 +227,8 @@ public class VentanaInicio extends JFrame implements ActionListener {
 				v2.setVisible(true);
 				
 				this.dispose();
+				}
+				
 			}
 
 		}

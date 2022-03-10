@@ -21,18 +21,16 @@ import javax.swing.JTextField;
 
 import lógica.Verificar;
 
-public class VentanaRegistroUsuario extends JFrame implements ActionListener, KeyListener {
+public class VentanaRegistroCliente extends JFrame implements ActionListener, KeyListener {
 
 	private JPanel pnlPrincipal;
 	private JButton btnSalir;
 	private JTextField txtNombre;
-	private JTextField txtTelefono;
+	private JTextField txtApellido;
 	private JTextField txtCorreo;
 	private JTextField txtContraseña;
 	private JTextField txtDocumento;
-	private JComboBox<String> cmbMultiplex;
-	private JComboBox<String> cmbCargo;
-	private JComboBox<String> cmbRol;
+	private JComboBox<String> cmbDocumento;
 	private JCheckBox cbxAutorizacion;
 	private JButton btnIngreso;
 	private JLabel lblIngresoUsuario;
@@ -40,10 +38,10 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	private String Cine;
 	private String Pelicula;
 
-	public VentanaRegistroUsuario() {
+	public VentanaRegistroCliente() {
 
 		setSize(700, 700);
-		setTitle("Registro Empleado");
+		setTitle("Registro Cliente");
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -51,6 +49,12 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 
 	}
 
+	public void enviarDatos(String Pelicula, String Cine) {
+
+		this.Cine = Cine;
+		this.Pelicula = Pelicula;
+
+	}
 
 	private void iniciarComponentes() {
 
@@ -80,7 +84,7 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 
 		lblIngresoUsuario = new JLabel();
 
-		lblIngresoUsuario.setText("Registro Empleado");
+		lblIngresoUsuario.setText("Registro clientes");
 
 		lblIngresoUsuario.setBounds(230, 0, 500, 100);
 		lblIngresoUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 26));
@@ -94,6 +98,7 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnRegistro.png");
 		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
 				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
+		btnIngreso.setEnabled(false);
 
 		pnlPrincipal.add(btnIngreso);
 
@@ -102,8 +107,8 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	private void crearComponentes() {
 
 		JLabel lblNombre = new JLabel();
-		lblNombre.setText("Nombres & Apellidos: ");
-		lblNombre.setBounds(120, 110, 190, 30);
+		lblNombre.setText("Nombres: ");
+		lblNombre.setBounds(120, 110, 150, 30);
 		lblNombre.setFont(new Font("Comic Sans MS", Font.ITALIC, 16));
 
 		pnlPrincipal.add(lblNombre);
@@ -118,18 +123,18 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblApellido = new JLabel();
-		lblApellido.setText("Número de Telefono: ");
-		lblApellido.setBounds(400, 110, 190, 30);
+		lblApellido.setText("Apellidos: ");
+		lblApellido.setBounds(400, 110, 150, 30);
 		lblApellido.setFont(new Font("Comic Sans MS", Font.ITALIC, 16));
 
 		pnlPrincipal.add(lblApellido);
 
-		txtTelefono = new JTextField();
-		txtTelefono.setBounds(400, 140, 200, 30);
-		txtTelefono.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtTelefono.addKeyListener(this);
+		txtApellido = new JTextField();
+		txtApellido.setBounds(400, 140, 200, 30);
+		txtApellido.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		txtApellido.addKeyListener(this);
 
-		pnlPrincipal.add(txtTelefono);
+		pnlPrincipal.add(txtApellido);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -164,8 +169,8 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblDocumento1 = new JLabel();
-		lblDocumento1.setText("Cedula Ciudadania:  ");
-		lblDocumento1.setBounds(400, 310, 190, 30);
+		lblDocumento1.setText("Documento de identidad: ");
+		lblDocumento1.setBounds(120, 310, 190, 30);
 		lblDocumento1.setFont(new Font("Comic Sans MS", Font.ITALIC, 16));
 
 		pnlPrincipal.add(lblDocumento1);
@@ -177,66 +182,26 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 
 		pnlPrincipal.add(txtDocumento);
 
-		JLabel lblMultiplex = new JLabel();
-		lblMultiplex.setText("Multiplex:  ");
-		lblMultiplex.setBounds(120, 310, 190, 30);
-		lblMultiplex.setFont(new Font("Comic Sans MS", Font.ITALIC, 16));
-		
-		pnlPrincipal.add(lblMultiplex);
-		
-		cmbMultiplex = new JComboBox<>();
-		cmbMultiplex.addItem("Titan");
-		cmbMultiplex.addItem("Unicentro");
-		cmbMultiplex.addItem("Plaza Central");
-		cmbMultiplex.addItem("Gran Estación");
-		cmbMultiplex.addItem("Embajador");
-		cmbMultiplex.addItem("LasAmericas");
-		cmbMultiplex.setBounds(120, 340, 190, 30);
-		cmbMultiplex.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		cmbDocumento = new JComboBox<>();
+		cmbDocumento.addItem("Cédula de Ciudadania");
+		cmbDocumento.setBounds(120, 340, 190, 30);
+		cmbDocumento.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-		pnlPrincipal.add(cmbMultiplex);
-
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		JLabel lblCargo = new JLabel();
-		lblCargo.setText("Cargo: ");
-		lblCargo.setBounds(120, 410, 190, 30);
-		lblCargo.setFont(new Font("Comic Sans MS", Font.ITALIC, 16));
-
-		pnlPrincipal.add(lblCargo);
-
-		cmbCargo = new JComboBox<>();
-		cmbCargo.setBounds(120, 440, 200, 30);
-		cmbCargo.addItem("Director");
-		cmbCargo.addItem("Cajero");
-		cmbCargo.addItem("Despachador Comida");
-		cmbCargo.addItem("Encargado Sala");
-		cmbCargo.addItem("Aseador");
-		cmbCargo.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		cmbCargo.addActionListener(this);
-
-		pnlPrincipal.add(cmbCargo);
-		
-		JLabel lblRol = new JLabel();
-		lblRol.setText("Rol: ");
-		lblRol.setBounds(400, 410, 190, 30);
-		lblRol.setFont(new Font("Comic Sans MS", Font.ITALIC, 16));
-		
-		pnlPrincipal.add(lblRol);
-
-		cmbRol = new JComboBox<>();
-		cmbRol.addItem("Rol aún no disponible");
-		cmbRol.setBounds(400, 440, 190, 30);
-		cmbRol.addActionListener(this);
-		cmbRol.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-
-		pnlPrincipal.add(cmbRol);
+		pnlPrincipal.add(cmbDocumento);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		
+		cbxAutorizacion = new JCheckBox();
+		cbxAutorizacion.setBounds(120, 350, 400, 260);
+		cbxAutorizacion.setContentAreaFilled(false);
+		cbxAutorizacion.setText("<html>En cumplimiento del Régimen de Protección Datos Personales, "
+				+ "autorizo expresamente a Cine Distrito, de manera directa, o a través de terceros "
+				+ "designados, para almacenar, consultar, procesar y en general, para dar tratamiento "
+				+ "a la información personal que suministre, y para ser incluido en sus bases de datos, "
+				+ "recibir información de la Compañía, de conformidad con las políticas de privacidad "
+				+ "y manejo de información.</html>");
+		cbxAutorizacion.addActionListener(this);
+		pnlPrincipal.add(cbxAutorizacion);
 
 	}
 
@@ -253,11 +218,10 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	 * @return retorno El código generado para el empleado
 	 */
 
-	private static String crearCodigo(String Nombre, String Cargo, String Documento) {
+	private static String crearCodigo(String Nombre, String Apellido, String Documento) {
 
-		String retorno = "" + Nombre.charAt(0) + Nombre.charAt(1) + Nombre.charAt(2) + Nombre.charAt(3) +  Cargo.charAt(0) + Cargo.charAt(1) + Cargo.charAt(2) + Cargo.charAt(3)+ Documento.charAt(0)
-		+ Documento.charAt(1)+ Documento.charAt(2)+ Documento.charAt(3);
-		
+		String retorno = "" + Nombre.charAt(0) + Nombre.charAt(1) + Apellido.charAt(0) + Apellido.charAt(1)
+				+ Documento.charAt(0) + Documento.charAt(1) + Documento.charAt(2) + Documento.charAt(3);
 		return retorno;
 	}
 
@@ -289,7 +253,7 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 
 			}
 
-			if (txtTelefono.getText().isEmpty() || txtNombre.getText().isEmpty() || txtContraseña.getText().isEmpty()
+			if (txtApellido.getText().isEmpty() || txtNombre.getText().isEmpty() || txtContraseña.getText().isEmpty()
 					|| txtCorreo.getText().isEmpty() || txtDocumento.getText().isEmpty()) {
 
 				JOptionPane.showMessageDialog(null, "Porfavor no deje espacios en blanco");
@@ -303,15 +267,15 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 			}
 
 			System.out.println("Codigo de empleado generado: "
-					+ crearCodigo(txtNombre.getText(), (String)cmbMultiplex.getSelectedItem() , txtDocumento.getText()));
+					+ crearCodigo(txtNombre.getText(), txtApellido.getText(), txtDocumento.getText()));
 
 		} else if (e.getSource() == btnSalir) {
 
 		
 
-				VentanaAdmin va = new VentanaAdmin();
-				this.setVisible(false);
-				va.setVisible(true);
+				VentanaIngresoCliente viu = new VentanaIngresoCliente(Cine, Pelicula);
+				this.dispose();
+				viu.setVisible(true);
 
 			
 
@@ -335,13 +299,13 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' '))
 				evt.consume();
 
-		} else if (evt.getSource() == txtTelefono) {
+		} else if (evt.getSource() == txtApellido) {
 
 			char c = evt.getKeyChar();
 
-			if (c < '0' || c > '9')
+			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' '))
 				evt.consume();
-			
+
 		}
 
 	}
@@ -359,6 +323,3 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	}
 
 }
-
-
-

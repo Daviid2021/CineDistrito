@@ -1,17 +1,10 @@
 package principal;
 
-import interfaz.VentanaInicio;
-import interfaz.VentanaPelicula;
-import interfaz.VentanaRegistroUsuario;
-
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import bdd.Conexion;
-import interfaz.VentanaCambiarContraseña;
-import interfaz.VentanaCartelera;
-import interfaz.VentanaIngresoUsuario;
+import interfaz.VentanaInicio;
+import interfaz.VentanaRegistroUsuario;
 
 
 /*
@@ -25,7 +18,9 @@ public class Main {
 		
 		VentanaInicio v1 = new VentanaInicio();
 		v1.setVisible(true);
+//		
 		
+//		
 		Conexion conexion = new Conexion();
 		Connection cn = null;
 //		
@@ -41,8 +36,15 @@ public class Main {
 //		VentanaRegistroUsuario vru = new VentanaRegistroUsuario();
 //		vru.setVisible(true);
 
-	
-
+//		d va = new VentanaAdmin();
+//		va.setVisible(true);
+		
+//		VentanaAgregarEmpleado vac = new VentanaAgregarEmpleado();
+//		vac.setVisible(true);
+		
+		
+//		VentanaRegistroUsuario var = new VentanaRegistroUsuario();
+//		var.setVisible(true);
 		
 		cn = conexion.conectar();
 

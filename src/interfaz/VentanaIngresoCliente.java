@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class VentanaIngresoUsuario extends JFrame implements ActionListener{
+public class VentanaIngresoCliente extends JFrame implements ActionListener{
 	private String cineSeleccionado;
 	private String peliculaSeleccionada;
 	//VentanaPelicula v4 = new VentanaPelicula(peliculaSeleccionada);
@@ -33,7 +33,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 	private JButton btnOlvidoContraseña;
 	private JButton btnRegistrarUsuario;
 
-	public VentanaIngresoUsuario(String cineSeleccionado, String peliculaSeleccionada) {
+	public VentanaIngresoCliente(String cineSeleccionado, String peliculaSeleccionada) {
 
 		this.cineSeleccionado = cineSeleccionado;
 		this.peliculaSeleccionada = peliculaSeleccionada;
@@ -47,7 +47,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 
 	}
 	
-	public VentanaIngresoUsuario() {
+	public VentanaIngresoCliente() {
 		
 		setSize(700, 700);
 		setTitle("Ingreso Cliente");
@@ -134,7 +134,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		
 		
 		JLabel lblIngresoUsuario = new JLabel();
-		lblIngresoUsuario.setText("Ingreso Usuario");
+		lblIngresoUsuario.setText("Ingreso Cliente");
 		lblIngresoUsuario.setBounds(180, 40, 500, 100);
 		lblIngresoUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 44));
 		
@@ -230,7 +230,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 			
 			if(txtCorreo.getText().isEmpty() || pwdContraseña.getText().isEmpty()) {
 				
-				JOptionPane.showMessageDialog(null, "Porfavor ingrese todos los datos");
+				JOptionPane.showMessageDialog(null, "Porfavor ingrese nuevamente los datos");
 				
 			}
 			
@@ -259,7 +259,7 @@ public class VentanaIngresoUsuario extends JFrame implements ActionListener{
 		else if (e.getSource()==btnRegistrarUsuario) {
 			
 			System.out.println("\ningresó a ventana Registrar Usuario");
-			VentanaRegistroUsuario vru = new VentanaRegistroUsuario();
+			VentanaRegistroCliente vru = new VentanaRegistroCliente();
 			vru.enviarDatos(peliculaSeleccionada, cineSeleccionado);
 			this.dispose();
 			vru.setVisible(true);

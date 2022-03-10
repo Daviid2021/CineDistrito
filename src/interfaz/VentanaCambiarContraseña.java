@@ -11,14 +11,11 @@ import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 
 public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 
@@ -29,12 +26,15 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 	private JButton btnSalir;
 	private String Cine;
 	private String Pelicula;
+	private JLabel lblContraseña;
+	private JLabel lblDocumento;
+	private JLabel lblCorreo;
 	
 	
 	public VentanaCambiarContraseña() {
 		
 		setSize(700, 700);
-		setTitle("Ingreso Multiplex");
+		setTitle("Olvido Contraseña");
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,6 +43,9 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		
 		
 	}
+	
+	
+	
 	
 	public void enviarDatos(String Pelicula, String Cine) {
 		
@@ -93,6 +96,21 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		pnlPrincipal.add(btnSalir);
 		
 		
+		lblContraseña = new JLabel();
+		
+			lblContraseña.setText("Establecer Contraseña");
+		
+		
+			lblContraseña.setText("Recuperar Contraseña");
+
+		
+			
+		lblContraseña.setBounds(130, 40, 500, 100);
+		lblContraseña.setFont(new Font("Comic Sans MS", Font.BOLD, 44));
+		
+		pnlPrincipal.add(lblContraseña);
+		
+		
 	}
 	
 	
@@ -105,7 +123,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		pnlDocumento.setOpaque(false);
 		pnlDocumento.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
 
-		JLabel lblDocumento = new JLabel();
+		lblDocumento = new JLabel();
 		lblDocumento.setBounds(80, 20, 280, 30);
 		lblDocumento.setText("Documento de Identidad");
 		lblDocumento.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
@@ -137,7 +155,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		pnlCorreo.setOpaque(false);
 		pnlCorreo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
 
-		JLabel lblCorreo = new JLabel();
+		lblCorreo = new JLabel();
 		lblCorreo.setBounds(110, 20, 200, 30);
 		lblCorreo.setText("Correo electrónico");
 		lblCorreo.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
@@ -160,28 +178,34 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnIngreso) {
 			
-			if(isNumeric(txtDocumento.getText()) && esCorreo(txtCorreo.getText()) ) {
-				
-				System.out.println("Ingresando...");
-				
-			}else {
-				
-				JOptionPane.showMessageDialog(null, "Formato inválido, ingrese los datos nuevamente", "Error de Formato", JOptionPane.WARNING_MESSAGE);
-				txtDocumento.setText("");
-				txtCorreo.setText("");
-			}
 			
 			
+				if(isNumeric(txtDocumento.getText()) && esCorreo(txtCorreo.getText()) ) {
+				
+					System.out.println("Ingresando...");
+				
+				}else {
+				
+					JOptionPane.showMessageDialog(null, "Formato inválido, ingrese los datos nuevamente", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+					txtDocumento.setText("");
+					txtCorreo.setText("");
+				}
 			
+			
+		
 			
 
 			
 		}
 		else if(e.getSource()==btnSalir) {
 			
-			VentanaIngresoUsuario viu = new VentanaIngresoUsuario(Cine, Pelicula);
-			this.dispose();
-			viu.setVisible(true);
+	
+		
+				
+				VentanaIngresoCliente viu = new VentanaIngresoCliente(Cine, Pelicula);
+				this.dispose();
+				viu.setVisible(true);
+				
 			
 			
 			
