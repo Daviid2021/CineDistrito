@@ -139,7 +139,7 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 		
 		
 
-		cmbCinesDisponibles = new JComboBox();
+		cmbCinesDisponibles = new JComboBox<String>();
 		cmbCinesDisponibles.addActionListener(this);
 		cmbCinesDisponibles.setBounds(340, 430, 150, 20);
 		cmbCinesDisponibles.addItem("Seleccione");

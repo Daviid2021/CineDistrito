@@ -23,6 +23,8 @@ En el paquete *principal* se encuentra el la clase Main junto con el metodo main
 
 ### Bugs Existentes:
 1. Falta agregar Fecha Contrato, Numero de telefono, Cargo , Rol, if(Cargo == x) Set. Salario =$ , Multiplex en el que trabaja
+2. Nos falta conocer con el número de silla, el precio a pagar por las sillas
+3. Metodo de pago VentanaPago
 
 
 	

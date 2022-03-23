@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VentanaCambiarContraseña extends JFrame implements ActionListener{
+public class VentanaCambiarContraseña extends JFrame implements ActionListener, KeyListener{
 
 	private JPanel pnlPrincipal;
 	private JTextField txtCorreo;
@@ -135,6 +137,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		txtDocumento = new JTextField();
 		txtDocumento.setBounds(100, 75, 200, 30);
 		txtDocumento.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		txtDocumento.addKeyListener(this);
 		
 		
 		
@@ -180,9 +183,10 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 			
 			
 			
-				if(isNumeric(txtDocumento.getText()) && esCorreo(txtCorreo.getText()) ) {
+				if(esCorreo(txtCorreo.getText()) ) {
 				
 					System.out.println("Ingresando...");
+					JOptionPane.showMessageDialog(null, "Su contraseña es\n \"123456\"", "Recuperación", JOptionPane.INFORMATION_MESSAGE);
 				
 				}else {
 				
@@ -213,20 +217,46 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener{
 		
 	}
 
-	
-	private boolean isNumeric(String cadena){
-		try {
-			Integer.parseInt(cadena);
-			return true;
-		} catch (NumberFormatException nfe){
-			return false;
-		}
-	}
+
 	
 	private boolean esCorreo(String Correo) {
 		Pattern patron = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher comparar=patron.matcher(Correo);
         return comparar.find();
+		
+	}
+
+
+
+
+	@Override
+	public void keyTyped(KeyEvent evt) {
+		if (evt.getSource() == txtDocumento) {
+
+			char c = evt.getKeyChar();
+
+			if (c < '0' || c > '9')
+				evt.consume();
+
+		}
+		
+	}
+
+
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

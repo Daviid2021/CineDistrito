@@ -40,7 +40,11 @@ public class Verificar {
 		
 	}
 
-	
+	public static void estaEnBaseDeDatos() {
+		
+		System.out.println("Deberia revisar si esta en base de datos");
+		
+	}
 	
 	
 }

@@ -127,7 +127,9 @@ public class VentanaAdmin extends JFrame implements ActionListener{
 			
 		}else if(e.getSource()==btnCambiarContraseña) {
 			
-			
+			VentanaEstablecerContraseña vec = new VentanaEstablecerContraseña();
+			this.setVisible(false);
+			vec.setVisible(true);
 
 			
 		}

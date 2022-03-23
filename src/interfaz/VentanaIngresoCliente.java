@@ -214,23 +214,32 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnIngreso) {
 			
-			if(esCorreo(txtCorreo.getText())) {
+			if(esCorreo(txtCorreo.getText()) && !pwdContraseña.getText().isEmpty()) {
 				
-				System.out.println(cineSeleccionado);
+				
 				
 				System.out.println("\nValidando información de Correo....");
 				
+				VentanaCompraSilla vcs = new VentanaCompraSilla(peliculaSeleccionada, cineSeleccionado);
+				this.setVisible(false);
+				vcs.setVisible(true);
+				
+				/*
+				 * Debe haber un método que envie los datos de la pelicula seleccionada y del cine seleccionado.
+				 */
+				
 			}else {
 				
-				JOptionPane.showMessageDialog(null, "Correo electrónico no valido", "Correo invalido", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Porfavor ingrese nuevamente los datos","ERROR", JOptionPane.ERROR_MESSAGE);
 				txtCorreo.setText("");
 				pwdContraseña.setText("");
 				
 			}
 			
+			/*Deberia ir si esta correcta con la base de datos*/
 			if(txtCorreo.getText().isEmpty() || pwdContraseña.getText().isEmpty()) {
 				
-				JOptionPane.showMessageDialog(null, "Porfavor ingrese nuevamente los datos");
+				
 				
 			}
 			
