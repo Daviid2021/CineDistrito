@@ -16,7 +16,7 @@ public class VentanaPeliculaMoonfall extends JPanel{
 	
 	private JPanel pnlPrincipal;
 	private String nombrePelicula ="";
-    private	JButton btnSalir;
+    private JButton btnSalir;
 	private	JLabel imgPelicula;
 	public static JComboBox<String> cmbCinesDisponibles;
 	private JButton btnContinue;

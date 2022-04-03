@@ -374,6 +374,10 @@ public class VentanaIngresoCliente extends JPanel {
 		return btnSalir;
 	}
 	
+	public JButton getBtnIngreso() {
+		return btnIngreso;
+	}
+	
 	public void setCineSeleccionado(String cineSeleccionado) {
 		CineSeleccionado = cineSeleccionado;
 	}
@@ -390,6 +394,35 @@ public class VentanaIngresoCliente extends JPanel {
 	//en lugar de String, Obj Cine.
 	public String getPeliculaSeleccionada() {
 		return PeliculaSeleccionada;
+	}
+	
+	public JButton getBtnRegistroUsuario() {
+		return btnRegistrarUsuario;
+	}
+	
+	public JButton getBtnOlvidoContraseña() {
+		return btnOlvidoContraseña;
+	}
+	
+	public String getTxtCorreo() {
+		return txtCorreo.getText();
+	}
+	
+	public JTextField getFtxtCorreo() {
+		
+		return txtCorreo;
+	}
+	
+	public void setTxtCorreo(String n) {
+		txtCorreo.setText(n);
+	}
+	
+	public JPasswordField getPwdContraseña() {
+		return pwdContraseña;
+	}
+	
+	public void setPwdContraseña(String n) {
+		pwdContraseña.setText(n);
 	}
 	
 }

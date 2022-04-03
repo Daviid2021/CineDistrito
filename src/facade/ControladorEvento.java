@@ -2,12 +2,15 @@ package facade;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import interfaz.VentanaIngresoCliente;
 import interfaz.VistaControlador;
 import interfaz.VentanaPeliculas.*;
 
 
-public class ControladorEvento implements ActionListener{
+public class ControladorEvento implements ActionListener, KeyListener{
 	
 	private VistaControlador interfaz;
 
@@ -136,6 +139,7 @@ public class ControladorEvento implements ActionListener{
 		
 				
 		if(e.getSource()== interfaz.getVentanaIngresoCliente().getBtnSalir()) {
+			
 			switch (interfaz.getVentanaIngresoCliente().getPeliculaSeleccionada()) {
 				
 			case "Encanto":
@@ -165,20 +169,123 @@ public class ControladorEvento implements ActionListener{
 				interfaz.getFachada().regresoIngresoPelicula(interfaz.getVentanaPeliculaSpiderman(), interfaz.getVentanaIngresoCliente());
 				
 			break;
-				
-				
-				
-				
-				
+	
 			}
+		}
+		
+		if(e.getSource() == interfaz.getVentanaIngresoCliente().getBtnIngreso()) {
 			
+			interfaz.getFachada().verificacionCliente(interfaz.getVentanaIngresoCliente(), interfaz.getVentanaCompraSilla());
 			
+		}
+		if(e.getSource() == interfaz.getVentanaIngresoCliente().getBtnRegistroUsuario()) {
 			
-	
-	
+			interfaz.getFachada().ingresoIngresoClienteRegistroCliente(interfaz.getVentanaRegistroCliente(),interfaz.getVentanaIngresoCliente());
+			
+		}
+		if(e.getSource() == interfaz.getVentanaIngresoCliente().getBtnOlvidoContraseña()) {
+			
+			interfaz.getFachada().ingresoIngresoClienteRecuperarContraseña(interfaz.getVentanaIngresoCliente(),interfaz.getVentanaRecuperarContraseña());
+			
 		}
 		
 		
+		
+		// // // // // // // // // VENTANA COMPRA SILLA // // // // // // // // //
+		
+		if(e.getSource() == interfaz.getVentanaCompraSilla().getBtnContinue()) {
+			
+			interfaz.getFachada().sillasSeleccionadas(interfaz.getVentanaCompraSilla());
+			
+		}
+		if(e.getSource() == interfaz.getVentanaCompraSilla().getBtnSalir()) {
+			
+			interfaz.getFachada().regresoCompraSillaIngreso(interfaz.getVentanaCompraSilla(), interfaz.getVentanaIngresoCliente());
+		}
+		
+		if(e.getSource()== interfaz.getVentanaCompraSilla().getRbtnGeneral()) {
+			
+			interfaz.getFachada().activarSpinnerGeneral(interfaz.getVentanaCompraSilla());
+		}
+		if(e.getSource()== interfaz.getVentanaCompraSilla().getRbtnPreferencial()) {
+			
+			interfaz.getFachada().activarSpinnerPreferencial(interfaz.getVentanaCompraSilla());
+		}
+
+		// // // // // // // // // VENTANA REGISTRO CLIENTE// // // // // // // // //
+		
+		if(e.getSource() == interfaz.getVentanaRegistroCliente().getBtnIngreso()) {
+			
+			interfaz.getFachada().registroClienteExitoso(interfaz.getVentanaRegistroCliente());
+			
+		}
+		if(e.getSource() == interfaz.getVentanaRegistroCliente().getCbxAutorizacion()) {
+			
+			interfaz.getFachada().chechkBoxSelecionado(interfaz.getVentanaRegistroCliente());
+		}
+
+		if(e.getSource() == interfaz.getVentanaRegistroCliente().getBtnSalir()) {
+			
+			interfaz.getFachada().regresoRegistroClienteIngresoCliente(interfaz.getVentanaRegistroCliente(), interfaz.getVentanaIngresoCliente());
+		}
+		
+		// // // // // // // // // VENTANA REGISTRO CLIENTE// // // // // // // // //
+
+		if(e.getSource() == interfaz.getVentanaRecuperarContraseña().getBtnSalir()) {
+			
+			interfaz.getFachada().regresoRecuperarContraseñaIngresoCliente(interfaz.getVentanaIngresoCliente(),interfaz.getVentanaRecuperarContraseña());
+		}
+		if(e.getSource() == interfaz.getVentanaRecuperarContraseña().getBtnContinue()) {
+			
+			interfaz.getFachada().recuperarContraseña(interfaz.getVentanaRecuperarContraseña());
+		}
+		
+		
+		
+		
+		
+		
+	}
+
+	
+	//Métodos obligatorios al implementar Key Listener
+
+	@Override
+	public void keyTyped(KeyEvent evt) {
+		
+		if(evt.getSource() == interfaz.getVentanaRegistroCliente().getTxtDocumento()) {
+			
+			char c = evt.getKeyChar(); if (c < '0' || c > '9') evt.consume();
+
+		}
+		if(evt.getSource() == interfaz.getVentanaRegistroCliente().getTxtNombre()) {
+			
+			char c = evt.getKeyChar(); if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' ')) evt.consume();
+		}
+		if(evt.getSource() == interfaz.getVentanaRegistroCliente().getTxtApellido()) {
+			
+			char c = evt.getKeyChar(); if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' ')) evt.consume();
+			
+		}
+		
+		if(evt.getSource() == interfaz.getVentanaRecuperarContraseña().getTxtDocumento()) {
+			char c = evt.getKeyChar(); if (c < '0' || c > '9') evt.consume();
+
+		}
+		
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

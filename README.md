@@ -22,8 +22,8 @@ En el paquete *principal* se encuentra el la clase Main junto con el metodo main
 
 
 ### Bugs Existentes:
-1. Falta agregar Fecha Contrato, Numero de telefono, Cargo , Rol, if(Cargo == x) Set. Salario =$ , Multiplex en el que trabaja
-2. Nos falta conocer con el número de silla, el precio a pagar por las sillas
+1. Agregar Facade A -VentanaAdmin  -VentanaEstablecerContraseña  -VentanaSnacks  -VentanaPago
+2. Hacer que Pelicula y Cine "viajen" por los paneles cono información.
 3. Metodo de pago VentanaPago
 
 

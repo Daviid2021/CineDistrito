@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 import lógica.Verificar;
 
-public class VentanaRegistroCliente extends JFrame implements ActionListener, KeyListener {
+public class VentanaRegistroCliente extends JPanel{
 
 	private JPanel pnlPrincipal;
 	private JButton btnSalir;
@@ -39,42 +39,20 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 	private String Pelicula;
 
 	public VentanaRegistroCliente() {
+		
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
 
-		setSize(700, 700);
-		setTitle("Registro Cliente");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
-
-	}
-
-	public void enviarDatos(String Pelicula, String Cine) {
-
-		this.Cine = Cine;
-		this.Pelicula = Pelicula;
-
-	}
-
-	private void iniciarComponentes() {
-
-		crearPanelPrincipal();
-		crearComponentes();
-
-	}
-
-	private void crearPanelPrincipal() {
-
-		pnlPrincipal = new JPanel();
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setBackground(Color.GRAY);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
+		this.add(pnlPrincipal);
 
 		btnSalir = new JButton();
 		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
@@ -93,7 +71,6 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 
 		btnIngreso = new JButton();
 		btnIngreso.setBounds(280, 580, 134, 54);
-		btnIngreso.addActionListener(this);
 		btnIngreso.setContentAreaFilled(false);
 		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnRegistro.png");
 		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
@@ -101,10 +78,6 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 		btnIngreso.setEnabled(false);
 
 		pnlPrincipal.add(btnIngreso);
-
-	}
-
-	private void crearComponentes() {
 
 		JLabel lblNombre = new JLabel();
 		lblNombre.setText("Nombres: ");
@@ -116,7 +89,6 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 		txtNombre = new JTextField();
 		txtNombre.setBounds(120, 140, 200, 30);
 		txtNombre.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtNombre.addKeyListener(this);
 
 		pnlPrincipal.add(txtNombre);
 
@@ -132,7 +104,6 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 		txtApellido = new JTextField();
 		txtApellido.setBounds(400, 140, 200, 30);
 		txtApellido.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtApellido.addKeyListener(this);
 
 		pnlPrincipal.add(txtApellido);
 
@@ -178,7 +149,6 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 		txtDocumento = new JTextField();
 		txtDocumento.setBounds(400, 340, 200, 30);
 		txtDocumento.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtDocumento.addKeyListener(this);
 
 		pnlPrincipal.add(txtDocumento);
 
@@ -200,10 +170,57 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 				+ "a la información personal que suministre, y para ser incluido en sus bases de datos, "
 				+ "recibir información de la Compañía, de conformidad con las políticas de privacidad "
 				+ "y manejo de información.</html>");
-		cbxAutorizacion.addActionListener(this);
 		pnlPrincipal.add(cbxAutorizacion);
 
+	
+
 	}
+
+	public void enviarDatos(String Pelicula, String Cine) {
+
+		this.Cine = Cine;
+		this.Pelicula = Pelicula;
+
+	}
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+	public JTextField getTxtApellido() {
+		return txtApellido;
+	}
+
+	public JTextField getTxtCorreo() {
+		return txtCorreo;
+	}
+
+	public JTextField getTxtContraseña() {
+		return txtContraseña;
+	}
+
+	public JTextField getTxtDocumento() {
+		return txtDocumento;
+	}
+
+	public JComboBox<String> getCmbDocumento() {
+		return cmbDocumento;
+	}
+
+	public JCheckBox getCbxAutorizacion() {
+		return cbxAutorizacion;
+	}
+
+	public JButton getBtnIngreso() {
+		return btnIngreso;
+	}
+
+
+	
 
 	/*
 	 * Método que devuelve el código del empleado una vez que se registra (Se debe
@@ -218,13 +235,10 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 	 * @return retorno El código generado para el empleado
 	 */
 
-	private static String crearCodigo(String Nombre, String Apellido, String Documento) {
+	
 
-		String retorno = "" + Nombre.charAt(0) + Nombre.charAt(1) + Apellido.charAt(0) + Apellido.charAt(1)
-				+ Documento.charAt(0) + Documento.charAt(1) + Documento.charAt(2) + Documento.charAt(3);
-		return retorno;
-	}
 
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cbxAutorizacion) {
@@ -283,6 +297,9 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 
 	}
 
+*/
+
+	/*
 	@Override
 	public void keyTyped(KeyEvent evt) {
 		if (evt.getSource() == txtDocumento) {
@@ -320,6 +337,6 @@ public class VentanaRegistroCliente extends JFrame implements ActionListener, Ke
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 }

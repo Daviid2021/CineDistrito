@@ -4,25 +4,25 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
-public class VentanaCompraSilla extends JFrame implements ActionListener {
+public class VentanaCompraSilla extends JPanel {
 
-	private JPanel pnlPrincipal;
-	private JPanel pnlSillas;
-	private JPanel pnlComplementos;
 	private JButton btnSalir;
 	private JButton btnContinue;
+	
+	private Component[] componentes;
 	
 	
 	private JToggleButton btnSilla00;
@@ -91,6 +91,14 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 	private JToggleButton btnSilla58;
 	private JToggleButton btnSilla59;
 	
+	private JRadioButton rbtnGeneral;
+	private JRadioButton rbtnPreferencial;
+	
+	private JSpinner spnGeneral;
+	private JSpinner spnPreferencial;
+	
+	
+
 	private String Pelicula;
 	private String Cine;
 	
@@ -101,48 +109,21 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 	
 	public VentanaCompraSilla() {
 		
-		setSize(700, 700);
-		setTitle("Compra");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
 
-	}
-	
-	public void recibirPeliculaCine(String Pelicula, String Cine) {
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
 		
-		this.Pelicula = Pelicula;
-		this.Cine = Cine;
 		
-	}
-	
-
-
-	private void iniciarComponentes() {
-
-		crearPaneles();
-		
-
-	}
-
-	private void crearPaneles() {
-		crearPanelPrincipal();
-		crearPanelSillas();
-		crearPanelComplementos();
-	}
-
-	private void crearPanelPrincipal() {
-		pnlPrincipal = new JPanel();
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setBackground(Color.GRAY);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
+		this.add(pnlPrincipal);
 
 		btnSalir = new JButton();
 		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
@@ -154,19 +135,15 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnContinue.setBounds(400, 550, 154, 54);
 		btnContinue.setContentAreaFilled(false);
 		//btnContinue.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
-		btnContinue.addActionListener(this);
 		ImageIcon imagenContinue = new ImageIcon("./img/imgBtnContinue.png");
 
 		btnContinue.setIcon(new ImageIcon(imagenContinue.getImage().getScaledInstance(btnContinue.getWidth(),
 				btnContinue.getHeight(), Image.SCALE_SMOOTH)));
 		
 		pnlPrincipal.add(btnContinue);
-	}
-
-	private void crearPanelSillas() {
-
 		
-		pnlSillas = new JPanel();
+		
+		JPanel pnlSillas = new JPanel();
 		pnlSillas.setBackground(Color.LIGHT_GRAY);
 		pnlSillas.setBounds(250, 90, 418, 320);
 		pnlSillas.setLayout(null);
@@ -182,7 +159,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla00.setBounds(10, 10, 36, 36);
 		btnSilla00.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla00.addActionListener(this);
 		pnlSillas.add(btnSilla00);
 
 		//
@@ -192,7 +168,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla01.setBounds(50, 10, 36, 36);
 		btnSilla01.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla01.addActionListener(this);
 		pnlSillas.add(btnSilla01);
 		
 		//
@@ -202,7 +177,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla02.setBounds(90, 10, 36, 36);
 		btnSilla02.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla02.addActionListener(this);
 		pnlSillas.add(btnSilla02);
 		
 		//
@@ -212,7 +186,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla03.setBounds(130, 10, 36, 36);
 		btnSilla03.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla03.addActionListener(this);
 		pnlSillas.add(btnSilla03);
 		
 		//
@@ -223,7 +196,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla04.setBounds(170, 10, 36, 36);
 		btnSilla04.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla04.addActionListener(this);
 		pnlSillas.add(btnSilla04);
 		
 		//
@@ -233,7 +205,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla05.setBounds(210, 10, 36, 36);
 		btnSilla05.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla05.addActionListener(this);
 		pnlSillas.add(btnSilla05);	
 		
 		//
@@ -243,7 +214,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla06.setBounds(250, 10, 36, 36);
 		btnSilla06.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla06.addActionListener(this);
 		pnlSillas.add(btnSilla06);
 		
 		//
@@ -253,7 +223,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla07.setBounds(290, 10, 36, 36);
 		btnSilla07.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla07.addActionListener(this);
 		pnlSillas.add(btnSilla07);
 		
 		//
@@ -263,7 +232,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla08.setBounds(330, 10, 36, 36);
 		btnSilla08.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla08.addActionListener(this);
 		pnlSillas.add(btnSilla08);
 		
 		//
@@ -273,7 +241,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla09.setBounds(370, 10, 36, 36);
 		btnSilla09.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla09.addActionListener(this);
 		pnlSillas.add(btnSilla09);
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -283,7 +250,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla10.setBounds(10, 50, 36, 36);
 		btnSilla10.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla10.addActionListener(this);
 		pnlSillas.add(btnSilla10);
 
 		//
@@ -293,7 +259,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla11.setBounds(50, 50, 36, 36);
 		btnSilla11.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla11.addActionListener(this);
 		pnlSillas.add(btnSilla11);
 		
 		//
@@ -303,7 +268,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla12.setBounds(90, 50, 36, 36);
 		btnSilla12.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla12.addActionListener(this);
 		pnlSillas.add(btnSilla12);
 		
 		//
@@ -313,7 +277,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla13.setBounds(130, 50, 36, 36);
 		btnSilla13.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla13.addActionListener(this);
 		pnlSillas.add(btnSilla13);
 		
 		//
@@ -324,7 +287,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla14.setBounds(170, 50, 36, 36);
 		btnSilla14.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla14.addActionListener(this);
 		pnlSillas.add(btnSilla14);
 		
 		//
@@ -334,7 +296,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla15.setBounds(210, 50, 36, 36);
 		btnSilla15.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla15.addActionListener(this);
 		pnlSillas.add(btnSilla15);	
 		
 		//
@@ -344,7 +305,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla16.setBounds(250, 50, 36, 36);
 		btnSilla16.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla16.addActionListener(this);
 		pnlSillas.add(btnSilla16);
 		
 		//
@@ -354,7 +314,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla17.setBounds(290, 50, 36, 36);
 		btnSilla17.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla17.addActionListener(this);
 		pnlSillas.add(btnSilla17);
 		
 		//
@@ -364,7 +323,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla18.setBounds(330, 50, 36, 36);
 		btnSilla18.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla18.addActionListener(this);
 		pnlSillas.add(btnSilla18);
 		
 		//
@@ -374,7 +332,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla19.setBounds(370, 50, 36, 36);
 		btnSilla19.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla19.addActionListener(this);
 		pnlSillas.add(btnSilla19);
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -384,7 +341,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla20.setBounds(10, 90, 36, 36);
 		btnSilla20.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla20.addActionListener(this);
 		pnlSillas.add(btnSilla20);
 
 		//
@@ -394,7 +350,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla21.setBounds(50, 90, 36, 36);
 		btnSilla21.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla21.addActionListener(this);
 		pnlSillas.add(btnSilla21);
 		
 		//
@@ -404,7 +359,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla22.setBounds(90, 90, 36, 36);
 		btnSilla22.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla22.addActionListener(this);
 		pnlSillas.add(btnSilla22);
 		
 		//
@@ -414,7 +368,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla23.setBounds(130, 90, 36, 36);
 		btnSilla23.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla23.addActionListener(this);
 		pnlSillas.add(btnSilla23);
 		
 		//
@@ -425,7 +378,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla24.setBounds(170, 90, 36, 36);
 		btnSilla24.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla24.addActionListener(this);
 		pnlSillas.add(btnSilla24);
 		
 		//
@@ -435,7 +387,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla25.setBounds(210, 90, 36, 36);
 		btnSilla25.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla25.addActionListener(this);
 		pnlSillas.add(btnSilla25);	
 		
 		//
@@ -445,7 +396,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla26.setBounds(250, 90, 36, 36);
 		btnSilla26.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla26.addActionListener(this);
 		btnSilla26.setBackground(Color.green);
 		pnlSillas.add(btnSilla26);
 		
@@ -456,7 +406,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla27.setBounds(290, 90, 36, 36);
 		btnSilla27.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla27.addActionListener(this);
 		pnlSillas.add(btnSilla27);
 		
 		//
@@ -466,7 +415,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla28.setBounds(330, 90, 36, 36);
 		btnSilla28.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla28.addActionListener(this);
 		pnlSillas.add(btnSilla28);
 		
 		//
@@ -476,7 +424,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla29.setBounds(370, 90, 36, 36);
 		btnSilla29.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla29.addActionListener(this);
 		pnlSillas.add(btnSilla29);
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -485,7 +432,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla30.setBounds(10, 130, 36, 36);
 		btnSilla30.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla30.addActionListener(this);
 		pnlSillas.add(btnSilla30);
 		
 		//
@@ -495,7 +441,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla31.setBounds(50, 130, 36, 36);
 		btnSilla31.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla31.addActionListener(this);
 		pnlSillas.add(btnSilla31);
 		
 		//
@@ -505,7 +450,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla32.setBounds(90, 130, 36, 36);
 		btnSilla32.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla32.addActionListener(this);
 		pnlSillas.add(btnSilla32);
 		
 		//
@@ -515,7 +459,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla33.setBounds(130, 130, 36, 36);
 		btnSilla33.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla33.addActionListener(this);
 		pnlSillas.add(btnSilla33);
 		
 		//
@@ -526,7 +469,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla34.setBounds(170, 130, 36, 36);
 		btnSilla34.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla34.addActionListener(this);
 		pnlSillas.add(btnSilla34);
 		
 		//
@@ -536,7 +478,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla35.setBounds(210, 130, 36, 36);
 		btnSilla35.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla35.addActionListener(this);
 		pnlSillas.add(btnSilla35);	
 		
 		//
@@ -546,7 +487,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla36.setBounds(250, 130, 36, 36);
 		btnSilla36.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla36.addActionListener(this);
 		btnSilla36.setBackground(Color.green);
 		pnlSillas.add(btnSilla36);
 		
@@ -557,7 +497,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla37.setBounds(290, 130, 36, 36);
 		btnSilla37.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla37.addActionListener(this);
 		pnlSillas.add(btnSilla37);
 		
 		//
@@ -567,7 +506,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla38.setBounds(330, 130, 36, 36);
 		btnSilla38.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla38.addActionListener(this);
 		pnlSillas.add(btnSilla38);
 		
 		//
@@ -577,7 +515,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla39.setBounds(370, 130, 36, 36);
 		btnSilla39.setIcon(new ImageIcon(imagenSilla.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla39.addActionListener(this);
 		pnlSillas.add(btnSilla39);
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -587,7 +524,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla40.setBounds(10, 170, 36, 36);
 		btnSilla40.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla40.addActionListener(this);
 		pnlSillas.add(btnSilla40);
 		
 		//
@@ -597,7 +533,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla41.setBounds(50, 170, 36, 36);
 		btnSilla41.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla41.addActionListener(this);
 		pnlSillas.add(btnSilla41);
 		
 		//
@@ -607,7 +542,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla42.setBounds(90, 170, 36, 36);
 		btnSilla42.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla42.addActionListener(this);
 		pnlSillas.add(btnSilla42);
 		
 		//
@@ -617,7 +551,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla43.setBounds(130, 170, 36, 36);
 		btnSilla43.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla43.addActionListener(this);
 		pnlSillas.add(btnSilla43);
 		
 		//
@@ -628,7 +561,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla44.setBounds(170, 170, 36, 36);
 		btnSilla44.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla24.addActionListener(this);
 		pnlSillas.add(btnSilla44);
 		
 		//
@@ -638,7 +570,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla45.setBounds(210, 170, 36, 36);
 		btnSilla45.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla45.addActionListener(this);
 		pnlSillas.add(btnSilla45);	
 		
 		//
@@ -648,7 +579,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla46.setBounds(250, 170, 36, 36);
 		btnSilla46.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla46.addActionListener(this);
 		pnlSillas.add(btnSilla46);
 		
 		//
@@ -658,7 +588,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla47.setBounds(290, 170, 36, 36);
 		btnSilla47.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla47.addActionListener(this);
 		pnlSillas.add(btnSilla47);
 		
 		//
@@ -668,7 +597,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla48.setBounds(330, 170, 36, 36);
 		btnSilla48.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla48.addActionListener(this);
 		pnlSillas.add(btnSilla48);
 		
 		//
@@ -678,7 +606,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla49.setBounds(370, 170, 36, 36);
 		btnSilla49.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla49.addActionListener(this);
 		pnlSillas.add(btnSilla49);
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -688,7 +615,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla50.setBounds(10, 210, 36, 36);
 		btnSilla50.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla50.addActionListener(this);
 		pnlSillas.add(btnSilla50);
 		
 		//
@@ -698,7 +624,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla51.setBounds(50, 210, 36, 36);
 		btnSilla51.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla51.addActionListener(this);
 		pnlSillas.add(btnSilla51);
 		
 		//
@@ -708,7 +633,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla52.setBounds(90, 210, 36, 36);
 		btnSilla52.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla52.addActionListener(this);
 		pnlSillas.add(btnSilla52);
 		
 		//
@@ -718,7 +642,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla53.setBounds(130, 210, 36, 36);
 		btnSilla53.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla53.addActionListener(this);
 		pnlSillas.add(btnSilla53);
 		
 		//
@@ -729,7 +652,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla54.setBounds(170, 210, 36, 36);
 		btnSilla54.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla54.addActionListener(this);
 		pnlSillas.add(btnSilla54);
 		
 		//
@@ -739,7 +661,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla55.setBounds(210, 210, 36, 36);
 		btnSilla55.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla55.addActionListener(this);
 		pnlSillas.add(btnSilla55);	
 		
 		//
@@ -749,7 +670,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla56.setBounds(250, 210, 36, 36);
 		btnSilla56.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla56.addActionListener(this);
 		pnlSillas.add(btnSilla56);
 		
 		//
@@ -759,7 +679,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla57.setBounds(290, 210, 36, 36);
 		btnSilla57.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla57.addActionListener(this);
 		pnlSillas.add(btnSilla57);
 		
 		//
@@ -769,7 +688,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla58.setBounds(330, 210, 36, 36);
 		btnSilla58.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla58.addActionListener(this);
 		pnlSillas.add(btnSilla58);
 		
 		//
@@ -779,7 +697,6 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla59.setBounds(370, 210, 36, 36);
 		btnSilla59.setIcon(new ImageIcon(imagenSillaPreferencial.getImage().getScaledInstance(32,
 				32, Image.SCALE_SMOOTH)));
-		btnSilla59.addActionListener(this);
 		pnlSillas.add(btnSilla59);
 		
 		
@@ -790,16 +707,12 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 				lblPantalla.getHeight(), Image.SCALE_SMOOTH)));
 //		lblPantalla.setText("Holaaa");
 		
-		pnlSillas.add(lblPantalla);
+		//pnladd(lblPantalla);
 		
 		
 		pnlPrincipal.add(pnlSillas);
 		
-	}
-
-	private void crearPanelComplementos() {
-		
-		pnlComplementos = new JPanel();
+		JPanel pnlComplementos = new JPanel();
 		pnlComplementos.setBackground(Color.LIGHT_GRAY);
 		pnlComplementos.setBounds(30, 90, 620, 470);
 		pnlComplementos.setLayout(null);
@@ -825,11 +738,343 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		lblCine.setFont((new Font("Comic Sans MS", 0, 18)));
 		pnlComplementos.add(lblCine);
 		
+		JLabel lblTitulos = new JLabel();
+		lblTitulos.setText("Costo     Boletos  Cantidad");
+		lblTitulos.setBounds(0, 190, 400, 40);
+		lblTitulos.setFont((new Font("Comic Sans MS", 1, 16)));
+		pnlComplementos.add(lblTitulos);
+		
+		JLabel lblCostoGeneral = new JLabel();
+		lblCostoGeneral.setText("$ 15.000");
+		lblCostoGeneral.setBounds(0, 240, 100, 40);
+		lblCostoGeneral.setFont((new Font("Comic Sans MS", 0, 11)));
+		pnlComplementos.add(lblCostoGeneral);
+		
+		JLabel lblCostoPreferencial = new JLabel();
+		lblCostoPreferencial.setText("$ 70.000");
+		lblCostoPreferencial.setBounds(0, 290, 100, 40);
+		lblCostoPreferencial.setFont((new Font("Comic Sans MS", 0, 11)));
+		pnlComplementos.add(lblCostoPreferencial);
+		
+		rbtnGeneral = new JRadioButton();
+		rbtnGeneral.setBounds(55, 240, 90, 40);
+		rbtnGeneral.setText("General");
+		rbtnGeneral.setOpaque(false);
+		rbtnGeneral.setFont((new Font("Comic Sans MS", 0, 13)));
+		pnlComplementos.add(rbtnGeneral);
+
+		rbtnPreferencial = new JRadioButton();
+		rbtnPreferencial.setBounds(55, 290, 115, 40);
+		rbtnPreferencial.setText("Preferencial");
+		rbtnPreferencial.setOpaque(false);
+		rbtnPreferencial.setFont((new Font("Comic Sans MS", 0, 13)));
+		pnlComplementos.add(rbtnPreferencial);
+		
+		SpinnerModel smG = new SpinnerNumberModel(1, 1, 9, 1);
+		spnGeneral = new JSpinner(smG);
+		spnGeneral.setBounds(160, 240, 50, 30);
+		spnGeneral.setFont((new Font("Comic Sans MS", 0, 11)));
+		spnGeneral.setEditor(new JSpinner.DefaultEditor(spnGeneral));
+		spnGeneral.setEnabled(false);
+		pnlComplementos.add(spnGeneral);
+		
+		SpinnerModel smP = new SpinnerNumberModel(1, 1, 9, 1);
+		spnPreferencial = new JSpinner(smP);
+		spnPreferencial.setBounds(160, 290, 50, 30);
+		spnPreferencial.setFont((new Font("Comic Sans MS", 0, 11)));
+		spnPreferencial.setEditor(new JSpinner.DefaultEditor(spnPreferencial));
+		spnPreferencial.setEnabled(false);
+		pnlComplementos.add(spnPreferencial);
+
+		
+		
 		
 		
 		pnlPrincipal.add(pnlComplementos);
 		
+		
+		componentes = pnlSillas.getComponents();
+		
+
 	}
+	
+	public void recibirPeliculaCine(String Pelicula, String Cine) {
+		
+		this.Pelicula = Pelicula;
+		this.Cine = Cine;
+		
+	}
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+
+	public JButton getBtnContinue() {
+		return btnContinue;
+	}
+
+	public JToggleButton getBtnSilla00() {
+		return btnSilla00;
+	}
+
+	public JToggleButton getBtnSilla01() {
+		return btnSilla01;
+	}
+
+	public JToggleButton getBtnSilla02() {
+		return btnSilla02;
+	}
+
+	public JToggleButton getBtnSilla03() {
+		return btnSilla03;
+	}
+
+	public JToggleButton getBtnSilla04() {
+		return btnSilla04;
+	}
+
+	public JToggleButton getBtnSilla05() {
+		return btnSilla05;
+	}
+
+	public JToggleButton getBtnSilla06() {
+		return btnSilla06;
+	}
+
+	public JToggleButton getBtnSilla07() {
+		return btnSilla07;
+	}
+
+	public JToggleButton getBtnSilla08() {
+		return btnSilla08;
+	}
+
+	public JToggleButton getBtnSilla09() {
+		return btnSilla09;
+	}
+
+	public JToggleButton getBtnSilla10() {
+		return btnSilla10;
+	}
+
+	public JToggleButton getBtnSilla11() {
+		return btnSilla11;
+	}
+
+	public JToggleButton getBtnSilla12() {
+		return btnSilla12;
+	}
+
+	public JToggleButton getBtnSilla13() {
+		return btnSilla13;
+	}
+
+	public JToggleButton getBtnSilla14() {
+		return btnSilla14;
+	}
+
+	public JToggleButton getBtnSilla15() {
+		return btnSilla15;
+	}
+
+	public JToggleButton getBtnSilla16() {
+		return btnSilla16;
+	}
+
+	public JToggleButton getBtnSilla17() {
+		return btnSilla17;
+	}
+
+	public JToggleButton getBtnSilla18() {
+		return btnSilla18;
+	}
+
+	public JToggleButton getBtnSilla19() {
+		return btnSilla19;
+	}
+
+	public JToggleButton getBtnSilla20() {
+		return btnSilla20;
+	}
+
+	public JToggleButton getBtnSilla21() {
+		return btnSilla21;
+	}
+
+	public JToggleButton getBtnSilla22() {
+		return btnSilla22;
+	}
+
+	public JToggleButton getBtnSilla23() {
+		return btnSilla23;
+	}
+
+	public JToggleButton getBtnSilla24() {
+		return btnSilla24;
+	}
+
+	public JToggleButton getBtnSilla25() {
+		return btnSilla25;
+	}
+
+	public JToggleButton getBtnSilla26() {
+		return btnSilla26;
+	}
+
+	public JToggleButton getBtnSilla27() {
+		return btnSilla27;
+	}
+
+	public JToggleButton getBtnSilla28() {
+		return btnSilla28;
+	}
+
+	public JToggleButton getBtnSilla29() {
+		return btnSilla29;
+	}
+
+	public JToggleButton getBtnSilla30() {
+		return btnSilla30;
+	}
+
+	public JToggleButton getBtnSilla31() {
+		return btnSilla31;
+	}
+
+	public JToggleButton getBtnSilla32() {
+		return btnSilla32;
+	}
+
+	public JToggleButton getBtnSilla33() {
+		return btnSilla33;
+	}
+
+	public JToggleButton getBtnSilla34() {
+		return btnSilla34;
+	}
+
+	public JToggleButton getBtnSilla35() {
+		return btnSilla35;
+	}
+
+	public JToggleButton getBtnSilla36() {
+		return btnSilla36;
+	}
+
+	public JToggleButton getBtnSilla37() {
+		return btnSilla37;
+	}
+
+	public JToggleButton getBtnSilla38() {
+		return btnSilla38;
+	}
+
+	public JToggleButton getBtnSilla39() {
+		return btnSilla39;
+	}
+
+	public JToggleButton getBtnSilla40() {
+		return btnSilla40;
+	}
+
+	public JToggleButton getBtnSilla41() {
+		return btnSilla41;
+	}
+
+	public JToggleButton getBtnSilla42() {
+		return btnSilla42;
+	}
+
+	public JToggleButton getBtnSilla43() {
+		return btnSilla43;
+	}
+
+	public JToggleButton getBtnSilla44() {
+		return btnSilla44;
+	}
+
+	public JToggleButton getBtnSilla45() {
+		return btnSilla45;
+	}
+
+	public JToggleButton getBtnSilla46() {
+		return btnSilla46;
+	}
+
+	public JToggleButton getBtnSilla47() {
+		return btnSilla47;
+	}
+
+	public JToggleButton getBtnSilla48() {
+		return btnSilla48;
+	}
+
+	public JToggleButton getBtnSilla49() {
+		return btnSilla49;
+	}
+
+	public JToggleButton getBtnSilla50() {
+		return btnSilla50;
+	}
+
+	public JToggleButton getBtnSilla51() {
+		return btnSilla51;
+	}
+
+	public JToggleButton getBtnSilla52() {
+		return btnSilla52;
+	}
+
+	public JToggleButton getBtnSilla53() {
+		return btnSilla53;
+	}
+
+	public JToggleButton getBtnSilla54() {
+		return btnSilla54;
+	}
+
+	public JToggleButton getBtnSilla55() {
+		return btnSilla55;
+	}
+
+	public JToggleButton getBtnSilla56() {
+		return btnSilla56;
+	}
+
+	public JToggleButton getBtnSilla57() {
+		return btnSilla57;
+	}
+
+	public JToggleButton getBtnSilla58() {
+		return btnSilla58;
+	}
+
+	public JToggleButton getBtnSilla59() {
+		return btnSilla59;
+	}
+	
+	public Component[] getComponentesSilla() {
+		return componentes; 
+		//= pnlSillas.getComponents();
+	}
+	public JRadioButton getRbtnGeneral() {
+		return rbtnGeneral;
+	}
+
+	public JRadioButton getRbtnPreferencial() {
+		return rbtnPreferencial;
+	}
+
+	public JSpinner getSpnGeneral() {
+		return spnGeneral;
+	}
+
+	public JSpinner getSpnPreferencial() {
+		return spnPreferencial;
+	}
+	
+
+/*
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -851,20 +1096,7 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		}
 		
 	}
-	
-	private String sillasSeleccionadas() {
-	
-	Component[] componentes = this.pnlSillas.getComponents();
-		
-		for (int i=0; i<componentes.length; i++) {
-			
-			 if( ((JToggleButton) componentes[i]).isSelected() ){
-                 Sillas += ((JToggleButton) componentes[i]).getName() + " - ";
-               }
-           }
-			
-		return "Sillas seleccionadas: "+Sillas;
-		
-	}
+	*/
+
 
 }

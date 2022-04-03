@@ -4,27 +4,25 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VentanaCambiarContraseña extends JFrame implements ActionListener, KeyListener{
+public class VentanaRecuperarContraseña extends JPanel {
 
 	private JPanel pnlPrincipal;
 	private JTextField txtCorreo;
 	private JTextField txtDocumento;
-	private JButton btnIngreso;
+	private JButton btnContinue;
 	private JButton btnSalir;
 	private String Cine;
 	private String Pelicula;
@@ -33,63 +31,32 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 	private JLabel lblCorreo;
 	
 	
-	public VentanaCambiarContraseña() {
+	public VentanaRecuperarContraseña() {
 		
-		setSize(700, 700);
-		setTitle("Olvido Contraseña");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
-
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
 		
-		
-	}
-	
-	
-	
-	
-	public void enviarDatos(String Pelicula, String Cine) {
-		
-		this.Cine = Cine;
-		this.Pelicula = Pelicula;
-		
-		
-	}
-	
-	private void iniciarComponentes() {
-		
-		crearPanelPrincipal();
-		crearPanelDocumento();
-		crearPanelCorreo();
-		
-	}
-	
-	private void crearPanelPrincipal() {
-		
-		pnlPrincipal = new JPanel();
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setBackground(Color.GRAY);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
+		this.add(pnlPrincipal);
 		
-		
-		btnIngreso = new JButton();
-		btnIngreso.setBounds(280, 520, 134, 54);
-		btnIngreso.addActionListener(this);
-		btnIngreso.setContentAreaFilled(false);
-		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
-		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
-				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
+		btnContinue = new JButton();
+		btnContinue.setBounds(280, 520, 134, 54);
+		btnContinue.setContentAreaFilled(false);
+		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnContinue.png");
+		btnContinue.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnContinue.getWidth(),
+				btnContinue.getHeight(), Image.SCALE_SMOOTH)));
 		
 
-		pnlPrincipal.add(btnIngreso);
+		pnlPrincipal.add(btnContinue);
 		
 		
 		btnSalir = new JButton();
 		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
@@ -99,25 +66,12 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 		
 		
 		lblContraseña = new JLabel();
-		
-			lblContraseña.setText("Establecer Contraseña");
-		
-		
-			lblContraseña.setText("Recuperar Contraseña");
-
-		
-			
+		lblContraseña.setText("Recuperar Contraseña");
 		lblContraseña.setBounds(130, 40, 500, 100);
 		lblContraseña.setFont(new Font("Comic Sans MS", Font.BOLD, 44));
 		
 		pnlPrincipal.add(lblContraseña);
 		
-		
-	}
-	
-	
-	private void crearPanelDocumento() {
-
 		JPanel pnlDocumento = new JPanel();
 		// pnlNombre.setBackground(Color.DARK_GRAY);
 		pnlDocumento.setLayout(null);
@@ -137,7 +91,6 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 		txtDocumento = new JTextField();
 		txtDocumento.setBounds(100, 75, 200, 30);
 		txtDocumento.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		txtDocumento.addKeyListener(this);
 		
 		
 		
@@ -146,10 +99,6 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 		pnlDocumento.add(txtDocumento);
 
 		pnlPrincipal.add(pnlDocumento);
-
-	}
-
-	private void crearPanelCorreo() {
 
 		JPanel pnlCorreo = new JPanel();
 		// pnlContraseña.setBackground(Color.GRAY);
@@ -174,9 +123,62 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 		
 
 		pnlPrincipal.add(pnlCorreo);
-
+	}
+	
+	
+	
+	
+	public void enviarDatos(String Pelicula, String Cine) {
+		
+		this.Cine = Cine;
+		this.Pelicula = Pelicula;
+		
+		
 	}
 
+
+
+
+	public JTextField getFTxtCorreo() {
+		return txtCorreo;
+	}
+	
+	public String getTxtCorreo() {
+		return txtCorreo.getText();
+	}
+
+
+
+
+	public JTextField getTxtDocumento() {
+		return txtDocumento;
+	}
+
+
+
+
+	public JButton getBtnContinue() {
+		return btnContinue;
+	}
+
+
+
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+
+
+
+	
+
+
+	
+	
+
+
+
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnIngreso) {
@@ -195,7 +197,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 					txtCorreo.setText("");
 				}
 			
-			
+		
 		
 			
 
@@ -216,19 +218,14 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 		}
 		
 	}
-
+*/	
 
 	
-	private boolean esCorreo(String Correo) {
-		Pattern patron = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher comparar=patron.matcher(Correo);
-        return comparar.find();
-		
-	}
 
 
 
 
+/*
 	@Override
 	public void keyTyped(KeyEvent evt) {
 		if (evt.getSource() == txtDocumento) {
@@ -242,26 +239,8 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener,
 		
 	}
 
-
-
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
-	
+	*/
 	
 	
 	

@@ -1,20 +1,32 @@
 package facade;
 
+import java.awt.Component;
+
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 import interfaz.VentanaCartelera;
+import interfaz.VentanaCompraSilla;
+import interfaz.VentanaEstablecerContraseña;
 import interfaz.VentanaIngresoCliente;
 import interfaz.VentanaInicio;
+import interfaz.VentanaRecuperarContraseña;
+import interfaz.VentanaRegistroCliente;
 import interfaz.VistaControlador;
 import interfaz.VentanaPeliculas.VentanaPeliculaEncanto;
 import interfaz.VentanaPeliculas.VentanaPeliculaMoonfall;
 import interfaz.VentanaPeliculas.VentanaPeliculaPaseo6;
 import interfaz.VentanaPeliculas.VentanaPeliculaScream;
 import interfaz.VentanaPeliculas.VentanaPeliculaSpiderman;
+import lógica.Verificar;
 
 public class Fachada {
 
 	private VistaControlador interfaz;
+	
+	private Verificar verificar;
+	
+	private Component [] Componentes;
 	
 	
 	
@@ -286,4 +298,181 @@ public class Fachada {
 		
 	}
 	
-}
+	public void verificacionCliente(VentanaIngresoCliente vic, VentanaCompraSilla vcs) {
+		
+		if(verificar.esCorreo(vic.getTxtCorreo()) && !vic.getPwdContraseña().getText().isEmpty()) {
+			
+			System.out.println("\nValidando información de Correo....");
+			
+			
+			/*
+			 * if(vic.getTxtCorreo() == BDD && vic.getPwdContraseña() == BDD){
+			 * 
+			 * 	}
+			 */
+			vic.setVisible(false);
+			vcs.setVisible(true);
+			
+			
+		}else {
+			
+			JOptionPane.showMessageDialog(null, "Porfavor ingrese nuevamente los datos","ERROR", JOptionPane.ERROR_MESSAGE);
+			vic.setTxtCorreo("");
+			vic.setPwdContraseña("");
+			
+		}
+		
+	}
+	
+	public void ingresoIngresoClienteRecuperarContraseña(VentanaIngresoCliente vic, VentanaRecuperarContraseña vrc) {
+		
+		System.out.println("Ingresó a Ventana Recuperar Contraseña");
+		vic.setVisible(false);
+		vrc.setVisible(true);
+		
+		
+	}
+	
+	// // // // // // // // // // VENTANA COMPRA SILLA // // // // // // // // // // 
+
+	public void sillasSeleccionadas(VentanaCompraSilla vcs) {
+		
+		if(!vcs.getSpnGeneral().isEnabled() && !vcs.getSpnPreferencial().isEnabled()) {
+
+			JOptionPane.showMessageDialog(null, "Porfavor seleccione asiento(s) para continuar", "NO Asiento", JOptionPane.INFORMATION_MESSAGE);
+			
+		}else {
+			
+			Componentes = vcs.getComponentesSilla();
+			String Sillas ="";
+			
+			for (int i=0; i<Componentes.length; i++) {
+				
+				 if( ( (JToggleButton) Componentes[i]).isSelected() ){
+	                Sillas += ((JToggleButton) Componentes[i]).getName() + " - ";
+	              }
+	          }
+				
+			System.out.println("Sillas seleccionadas: "+Sillas); 
+			
+		}
+		
+	}
+	
+	public void regresoCompraSillaIngreso(VentanaCompraSilla vcs, VentanaIngresoCliente vic) {
+		
+		System.out.println("Regresó a Ventana Ingreso Cliente");
+		vcs.setVisible(false);
+		vic.setVisible(true);
+		
+	}
+	
+
+	public void ingresoIngresoClienteRegistroCliente(VentanaRegistroCliente vrc, VentanaIngresoCliente vic) {
+		
+		System.out.println("Ingresó a la Ventana de Registro");
+		vic.setVisible(false);
+		vrc.setVisible(true);
+		
+	}
+	
+	public boolean registroClienteExitoso(VentanaRegistroCliente vrc) {
+		
+		
+		if (!Verificar.esCorreo(vrc.getTxtCorreo().getText())) {
+
+			JOptionPane.showMessageDialog(null, "Ingrese un formato de correo válido");
+			vrc.getTxtCorreo().setText("");
+			return false;
+		}
+		else if(vrc.getTxtApellido().getText().isEmpty() || vrc.getTxtContraseña().getText().isEmpty() || vrc.getTxtDocumento().getText().isEmpty() || vrc.getTxtNombre().getText().isEmpty()){
+			
+			JOptionPane.showMessageDialog(null, "Porfavor no deje espacios en blanco");
+			vrc.getBtnIngreso().setEnabled(false);
+			vrc.getCbxAutorizacion().setSelected(false);
+			return false;
+			
+		}else {
+			
+			vrc.getBtnIngreso().setEnabled(true);
+			System.out.println("Se registró con éxito!");
+			//Se agrega el Cliente a la BDD
+			return true;
+		}
+
+		
+		
+	}
+	
+	public void chechkBoxSelecionado(VentanaRegistroCliente vrc) {
+		
+		if(vrc.getCbxAutorizacion().isSelected()) {
+			
+			vrc.getBtnIngreso().setEnabled(true);
+
+			
+		}else {
+			vrc.getBtnIngreso().setEnabled(false);
+		}
+		
+	}
+	
+	public void regresoRegistroClienteIngresoCliente(VentanaRegistroCliente vrc, VentanaIngresoCliente vic) {
+		
+		System.out.println("Regresó a ventana Ingreso Usuario");
+		vrc.setVisible(false);
+		vic.getPwdContraseña().setText("");
+		vic.getFtxtCorreo().setText("");
+		vic.setVisible(true);
+		
+	}
+	
+	public void recuperarContraseña(VentanaRecuperarContraseña vrc) {
+		
+		if(Verificar.esCorreo(vrc.getTxtCorreo()) && !vrc.getTxtDocumento().getText().isEmpty()) {
+			
+			//Se hace la verificación en la base de datos
+			
+			JOptionPane.showMessageDialog(null, "Recuperación Exitósa\nNombre usuario: _______________\nContraseña: _______________");
+			
+			
+		}else {
+			
+			JOptionPane.showMessageDialog(null, "Porfavor ingrese nuevamente los datos","ERROR", JOptionPane.ERROR_MESSAGE);
+			
+		}
+		
+	}
+	
+	public void regresoRecuperarContraseñaIngresoCliente(VentanaIngresoCliente vic, VentanaRecuperarContraseña vrcontraseña) {
+		
+		System.out.println("Regresó a Ventana Ingreso");
+		vrcontraseña.setVisible(false);
+		vic.setVisible(true);
+		
+	}
+	
+	public void activarSpinnerGeneral(VentanaCompraSilla vcs) {
+
+		if (vcs.getRbtnGeneral().isSelected()) {
+			vcs.getSpnGeneral().setEnabled(true);
+		} else {
+			vcs.getSpnGeneral().setEnabled(false);
+		}
+
+	}
+
+	public void activarSpinnerPreferencial(VentanaCompraSilla vcs) {
+
+		if (vcs.getRbtnPreferencial().isSelected()) {
+			vcs.getSpnPreferencial().setEnabled(true);
+		} else {
+			vcs.getSpnPreferencial().setEnabled(false);
+		}
+
+	}
+
+		
+	}
+	
+
