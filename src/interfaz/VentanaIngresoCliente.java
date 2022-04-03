@@ -19,9 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class VentanaIngresoCliente extends JFrame implements ActionListener{
-	private String cineSeleccionado;
-	private String peliculaSeleccionada;
+import interfaz.VentanaPeliculas.VentanaPelicula;
+
+public class VentanaIngresoCliente extends JPanel {
+	private String CineSeleccionado;
+	private String PeliculaSeleccionada;
 	//VentanaPelicula v4 = new VentanaPelicula(peliculaSeleccionada);
 
 	
@@ -33,52 +35,20 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 	private JButton btnOlvidoContraseña;
 	private JButton btnRegistrarUsuario;
 
-	public VentanaIngresoCliente(String cineSeleccionado, String peliculaSeleccionada) {
-
-		this.cineSeleccionado = cineSeleccionado;
-		this.peliculaSeleccionada = peliculaSeleccionada;
-
-		setSize(700, 700);
-		setTitle("Ingreso Cliente");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
-
-	}
-	
 	public VentanaIngresoCliente() {
+
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
 		
-		setSize(700, 700);
-		setTitle("Ingreso Cliente");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
-		
-	}
-	
-	private void iniciarComponentes() {
-		
-		crearPanelPrincipal();
-		crearPanelNombre();
-		crearPanelContraseña();
-		
-		
-		
-	}
-	
-	private void crearPanelPrincipal() {
-		
-		pnlPrincipal = new JPanel();
+		JPanel pnlPrincipal = new JPanel();
 		pnlPrincipal.setBackground(Color.GRAY);
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
+		this.add(pnlPrincipal);
 		
 		
 		btnIngreso = new JButton();
 		btnIngreso.setBounds(280, 500, 134, 54);
-		btnIngreso.addActionListener(this);
 		btnIngreso.setContentAreaFilled(false);
 		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
 		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
@@ -92,7 +62,6 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
@@ -105,7 +74,6 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 		//btnOlvidoContraseña.setText("¿Olvido la contraseña?");
 		
 		btnOlvidoContraseña.setBounds(20, 600, 300, 40);
-		btnOlvidoContraseña.addActionListener(this);
 		btnOlvidoContraseña.setContentAreaFilled(false);
 		btnOlvidoContraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
 		btnOlvidoContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -121,7 +89,128 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 		btnRegistrarUsuario = new JButton();
 		btnRegistrarUsuario.setBounds(370, 600, 300, 40);
 		btnRegistrarUsuario.setContentAreaFilled(false);
-		btnRegistrarUsuario.addActionListener(this);
+		btnRegistrarUsuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
+		btnRegistrarUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ImageIcon imagenRegistrarUsuario = new ImageIcon("./img/imgRegistrarUsuario.png");
+
+		btnRegistrarUsuario.setIcon(new ImageIcon(imagenRegistrarUsuario.getImage().getScaledInstance(btnRegistrarUsuario.getWidth(),
+				btnRegistrarUsuario.getHeight(), Image.SCALE_SMOOTH)));
+		
+		
+		pnlPrincipal.add(btnRegistrarUsuario);
+		
+		
+		JLabel lblIngresoUsuario = new JLabel();
+		lblIngresoUsuario.setText("Ingreso Cliente");
+		lblIngresoUsuario.setBounds(180, 40, 500, 100);
+		lblIngresoUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 44));
+		
+		pnlPrincipal.add(lblIngresoUsuario);
+		
+		JPanel pnlNombre = new JPanel();
+		// pnlNombre.setBackground(Color.DARK_GRAY);
+		pnlNombre.setLayout(null);
+		pnlNombre.setBounds(150, 190, 400, 130); // Estaba en (50, 350, 600,130)
+		pnlNombre.setOpaque(false);
+		pnlNombre.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
+
+		JLabel lblCorreo = new JLabel();
+		lblCorreo.setBounds(105, 20, 180, 30);
+		lblCorreo.setText("Correo Electrónico");
+		lblCorreo.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+
+		pnlNombre.add(lblCorreo);
+
+		txtCorreo = new JTextField();
+		txtCorreo.setBounds(100, 75, 200, 30);
+		txtCorreo.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		
+
+		pnlNombre.add(txtCorreo);
+
+		pnlPrincipal.add(pnlNombre);
+		
+		JPanel pnlContraseña = new JPanel();
+		// pnlContraseña.setBackground(Color.GRAY);
+		pnlContraseña.setLayout(null);
+		pnlContraseña.setBounds(150, 350, 400, 130);
+		pnlContraseña.setOpaque(false);
+		pnlContraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
+
+		JLabel lblContraseña = new JLabel();
+		lblContraseña.setBounds(140, 20, 150, 30);
+		lblContraseña.setText("Contraseña");
+		lblContraseña.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+
+		pnlContraseña.add(lblContraseña);
+
+		pwdContraseña = new JPasswordField();
+		pwdContraseña.setBounds(100, 75, 200, 30);
+		pwdContraseña.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+
+		pnlContraseña.add(pwdContraseña);
+		
+		
+
+		pnlPrincipal.add(pnlContraseña);
+
+
+
+	}
+
+	
+
+	private void crearPanelPrincipal() {
+		
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setBackground(Color.GRAY);
+		pnlPrincipal.setBounds(0, 0, 700, 700);
+		pnlPrincipal.setLayout(null);
+		this.add(pnlPrincipal);
+		
+		
+		btnIngreso = new JButton();
+		btnIngreso.setBounds(280, 500, 134, 54);
+		btnIngreso.setContentAreaFilled(false);
+		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
+		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
+				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
+		
+
+		pnlPrincipal.add(btnIngreso);
+		
+		
+		btnSalir = new JButton();
+		btnSalir.setBounds(20, 20, 60, 40);
+		btnSalir.setContentAreaFilled(false);
+		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
+		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
+
+		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
+				btnSalir.getHeight(), Image.SCALE_SMOOTH)));
+
+		pnlPrincipal.add(btnSalir);
+
+		
+		btnOlvidoContraseña = new JButton();
+		//btnOlvidoContraseña.setText("¿Olvido la contraseña?");
+		
+		btnOlvidoContraseña.setBounds(20, 600, 300, 40);
+		btnOlvidoContraseña.setContentAreaFilled(false);
+		btnOlvidoContraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
+		btnOlvidoContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ImageIcon imagenOlvidoContraseña = new ImageIcon("./img/imgOlvidoContraseña.png");
+
+		btnOlvidoContraseña.setIcon(new ImageIcon(imagenOlvidoContraseña.getImage().getScaledInstance(btnOlvidoContraseña.getWidth(),
+				btnOlvidoContraseña.getHeight(), Image.SCALE_SMOOTH)));
+		
+		
+		pnlPrincipal.add(btnOlvidoContraseña);
+		
+		
+		btnRegistrarUsuario = new JButton();
+		btnRegistrarUsuario.setBounds(370, 600, 300, 40);
+		btnRegistrarUsuario.setContentAreaFilled(false);
 		btnRegistrarUsuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
 		btnRegistrarUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ImageIcon imagenRegistrarUsuario = new ImageIcon("./img/imgRegistrarUsuario.png");
@@ -210,6 +299,7 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 	}
 
 
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnIngreso) {
@@ -220,13 +310,14 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 				
 				System.out.println("\nValidando información de Correo....");
 				
-				VentanaCompraSilla vcs = new VentanaCompraSilla(peliculaSeleccionada, cineSeleccionado);
+				VentanaCompraSilla vcs = new VentanaCompraSilla();
+				vcs.recibirPeliculaCine(peliculaSeleccionada, cineSeleccionado);
 				this.setVisible(false);
 				vcs.setVisible(true);
 				
 				/*
 				 * Debe haber un método que envie los datos de la pelicula seleccionada y del cine seleccionado.
-				 */
+				 
 				
 			}else {
 				
@@ -236,7 +327,7 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 				
 			}
 			
-			/*Deberia ir si esta correcta con la base de datos*/
+			/*Deberia ir si esta correcta con la base de datos
 			if(txtCorreo.getText().isEmpty() || pwdContraseña.getText().isEmpty()) {
 				
 				
@@ -250,10 +341,11 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 			this.dispose();
 			System.out.println("Ha regresado a la ventana de Pelicula: "+peliculaSeleccionada);
 
-			VentanaPelicula miVentanaPelicula= new VentanaPelicula(peliculaSeleccionada);
-			miVentanaPelicula.setVisible(true);
+			//VentanaPelicula miVentanaPelicula= new VentanaPelicula();
+			//miVentanaPelicula.setPelicula(peliculaSeleccionada);
+			//miVentanaPelicula.setVisible(true);
 //			
-			VentanaPelicula.cmbCinesDisponibles.removeItem("Seleccione");
+			//VentanaPelicula.cmbCinesDisponibles.removeItem("Seleccione");
 			
 		}
 		else if (e.getSource()==btnOlvidoContraseña) {
@@ -276,6 +368,28 @@ public class VentanaIngresoCliente extends JFrame implements ActionListener{
 			
 		}
 	}
-	
+	*/
 
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+	
+	public void setCineSeleccionado(String cineSeleccionado) {
+		CineSeleccionado = cineSeleccionado;
+	}
+	
+	//en lugar de String, Obj Cine.
+	public String getCineSeleccionado() {
+		return CineSeleccionado;
+	}
+	
+	public void setPeliculaSeleccionada(String peliculaSeleccionada) {
+		PeliculaSeleccionada = peliculaSeleccionada;
+	}
+	
+	//en lugar de String, Obj Cine.
+	public String getPeliculaSeleccionada() {
+		return PeliculaSeleccionada;
+	}
+	
 }

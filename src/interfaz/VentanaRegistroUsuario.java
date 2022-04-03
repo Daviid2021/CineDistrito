@@ -253,10 +253,11 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	 * @return retorno El código generado para el empleado
 	 */
 
+	//Cargo o Multiplex
 	private static String crearCodigo(String Nombre, String Cargo, String Documento) {
 
-		String retorno = "" + Nombre.charAt(0) + Nombre.charAt(1) + Nombre.charAt(2) + Nombre.charAt(3) +  Cargo.charAt(0) + Cargo.charAt(1) + Cargo.charAt(2) + Cargo.charAt(3)+ Documento.charAt(0)
-		+ Documento.charAt(1)+ Documento.charAt(2)+ Documento.charAt(3);
+		String retorno = "" + Nombre.charAt(0) + Nombre.charAt(1) + Nombre.charAt(2) + Nombre.charAt(3) +  Cargo.charAt(0) + Cargo.charAt(1) + 
+						Cargo.charAt(2) + Cargo.charAt(3)+ Documento.charAt(0)	+ Documento.charAt(1)+ Documento.charAt(2)+ Documento.charAt(3);
 		
 		return retorno;
 	}

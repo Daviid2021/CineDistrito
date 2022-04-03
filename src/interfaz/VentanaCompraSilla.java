@@ -99,9 +99,8 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 	
 	
 	
-	public VentanaCompraSilla(String Pelicula, String Cine) {
-		this.Pelicula = Pelicula;
-		this.Cine = Cine;
+	public VentanaCompraSilla() {
+		
 		setSize(700, 700);
 		setTitle("Compra");
 		setLocationRelativeTo(null);
@@ -109,6 +108,13 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		iniciarComponentes();
 
+	}
+	
+	public void recibirPeliculaCine(String Pelicula, String Cine) {
+		
+		this.Pelicula = Pelicula;
+		this.Cine = Cine;
+		
 	}
 	
 
@@ -162,7 +168,7 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		
 		pnlSillas = new JPanel();
 		pnlSillas.setBackground(Color.LIGHT_GRAY);
-		pnlSillas.setBounds(250, 90, 418, 300);
+		pnlSillas.setBounds(250, 90, 418, 320);
 		pnlSillas.setLayout(null);
 		pnlSillas.setOpaque(false);
 		pnlSillas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
@@ -776,6 +782,15 @@ public class VentanaCompraSilla extends JFrame implements ActionListener {
 		btnSilla59.addActionListener(this);
 		pnlSillas.add(btnSilla59);
 		
+		
+		JLabel lblPantalla = new JLabel();
+		lblPantalla.setBounds(210, 320, 397, 397);
+		ImageIcon imagenTV = new ImageIcon("./img/imgPantalla.png");
+		lblPantalla.setIcon(new ImageIcon(imagenTV.getImage().getScaledInstance(lblPantalla.getWidth(),
+				lblPantalla.getHeight(), Image.SCALE_SMOOTH)));
+//		lblPantalla.setText("Holaaa");
+		
+		pnlSillas.add(lblPantalla);
 		
 		
 		pnlPrincipal.add(pnlSillas);

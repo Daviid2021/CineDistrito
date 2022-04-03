@@ -2,25 +2,23 @@
 package interfaz;
 
 	import java.awt.Color;
-	import java.awt.Font;
-	import java.awt.Image;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import java.util.regex.Matcher;
-	import java.util.regex.Pattern;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-	import javax.swing.BorderFactory;
-	import javax.swing.ImageIcon;
-	import javax.swing.JButton;
-	import javax.swing.JFrame;
-	import javax.swing.JLabel;
-	import javax.swing.JOptionPane;
-	import javax.swing.JPanel;
-	import javax.swing.JTextField;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import lógica.Verificar;
 
-	public class VentanaEstablecerContraseña extends JFrame implements ActionListener{
+	public class VentanaEstablecerContraseña extends JPanel implements ActionListener{
 
 		private JPanel pnlPrincipal;
 		private JTextField txtContraseña;
@@ -33,20 +31,11 @@ import lógica.Verificar;
 		private JLabel lblCodigo;
 		
 		
+
 		public VentanaEstablecerContraseña() {
 			
-			setSize(700, 700);
-			setTitle("Establecer Contraseña");
-			setLocationRelativeTo(null);
-			setResizable(false);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			iniciarComponentes();
-
-			
-			
 		}
-		
-		
 		
 
 		private void iniciarComponentes() {
@@ -62,7 +51,7 @@ import lógica.Verificar;
 			pnlPrincipal = new JPanel();
 			pnlPrincipal.setBackground(Color.GRAY);
 			pnlPrincipal.setLayout(null);
-			this.getContentPane().add(pnlPrincipal);
+			this.add(pnlPrincipal);
 			
 			
 			btnIngreso = new JButton();

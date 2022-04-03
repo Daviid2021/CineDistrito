@@ -1,25 +1,22 @@
 package interfaz;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class VentanaInicio extends JFrame implements ActionListener {
+public class VentanaInicio extends JPanel {
 
+	private JLayeredPane pnlBase;
 	private JPanel pnlPrincipal;
 	private JPanel pnlUsuario;
 	private JComboBox<String> cmbUsuario;
@@ -28,123 +25,55 @@ public class VentanaInicio extends JFrame implements ActionListener {
 	private JButton btnSalir;
 	private JButton btnIngreso;
 	
-	/*
-	 * Se crea el JFrame 
-	 */
+
 
 	public VentanaInicio() {
 
-		setSize(700, 700);
-		setTitle("Ingreso Multiplex");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
-
-	}
-	
-	/*
-	 * Se crean los paneles
-	 */
-
-	private void iniciarComponentes() {
-
-		crearPaneles();
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
 		
-
-	}
-
-	private void crearPaneles() {
-		crearPanelPrincipal();
-	}
-
-	private void crearPanelPrincipal() {
-
-		pnlPrincipal = new JPanel();
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setBackground(Color.GRAY);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
-		// crearPanelUsuario();
-		crearPanelNombre();
-		crearPanelContraseña();
-
+		this.add(pnlPrincipal);
+		
 		JLabel lblImgUsuario = new JLabel();
 		lblImgUsuario.setBounds(270, 20, 150, 150);
 		ImageIcon imagenUsuario = new ImageIcon("./img/imgUser.png");
 
 		lblImgUsuario.setIcon(new ImageIcon(imagenUsuario.getImage().getScaledInstance(lblImgUsuario.getWidth(),
 				lblImgUsuario.getHeight(), Image.SCALE_SMOOTH)));
-
 		pnlPrincipal.add(lblImgUsuario);
-
+		
 		btnIngreso = new JButton();
 		btnIngreso.setBounds(280, 550, 134, 54);
-		btnIngreso.addActionListener(this);
 		btnIngreso.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		btnIngreso.setContentAreaFilled(false);
 		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
 		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
 				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
-		
-
 		pnlPrincipal.add(btnIngreso);
-
+		
 		btnSalir = new JButton();
 		btnSalir.setBounds(20, 20, 60, 60);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/Exit.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
 				btnSalir.getHeight(), Image.SCALE_SMOOTH)));
-
+		
 		pnlPrincipal.add(btnSalir);
-
-	}
-
-	/*
-	 * @deprecated
-	 */
-	public void crearPanelUsuario() {
-
-		pnlUsuario = new JPanel();
-		// pnlUsuario.setBackground(Color.LIGHT_GRAY);
-		pnlUsuario.setBounds(50, 190, 600, 130);
-		pnlUsuario.setLayout(null);
-		pnlUsuario.setOpaque(false);
-		pnlUsuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
-
-		JLabel lblUsuario = new JLabel();
-		lblUsuario.setText("Usuario");
-		lblUsuario.setBounds(250, 30, 80, 30);
-		lblUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		pnlUsuario.add(lblUsuario);
-
-		String[] Cines = { "Seleccione", "Titan Plaza", "Unicentro", "Plaza Central", "Gran Estación", "Embajador",
-				"Plaza Americas" };
-		cmbUsuario = new JComboBox(Cines);
-		// cmbUsuario.addItem("Multipelx");
-		cmbUsuario.setSelectedItem("Seleccione");
-		cmbUsuario.setBounds(200, 90, 200, 30);
-		cmbUsuario.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		cmbUsuario.addActionListener(this);
-
-		pnlUsuario.add(cmbUsuario);
-
-		pnlPrincipal.add(pnlUsuario);
-
-	}
-
-	private void crearPanelNombre() {
-
+		
 		JPanel pnlNombre = new JPanel();
-		// pnlNombre.setBackground(Color.DARK_GRAY);
+		pnlNombre.setBackground(Color.DARK_GRAY);
 		pnlNombre.setLayout(null);
 		pnlNombre.setBounds(50, 190, 600, 130); // Estaba en (50, 350, 600,130)
 		pnlNombre.setOpaque(false);
 		pnlNombre.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
-
+		pnlPrincipal.add(pnlNombre);
+	
 		JLabel lblNombre = new JLabel();
 		lblNombre.setBounds(250, 20, 80, 30);
 		lblNombre.setText("Nombre");
@@ -158,13 +87,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
 		
 
 		pnlNombre.add(txtNombre);
-
-		pnlPrincipal.add(pnlNombre);
-
-	}
-
-	private void crearPanelContraseña() {
-
+		
 		JPanel pnlContraseña = new JPanel();
 		// pnlContraseña.setBackground(Color.GRAY);
 		pnlContraseña.setLayout(null);
@@ -186,9 +109,17 @@ public class VentanaInicio extends JFrame implements ActionListener {
 		pnlContraseña.add(pwdContraseña);
 
 		pnlPrincipal.add(pnlContraseña);
+	
 
 	}
 
+
+
+	
+
+
+
+/*
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnSalir) {
@@ -232,6 +163,26 @@ public class VentanaInicio extends JFrame implements ActionListener {
 			}
 
 		}
+	}*/
+
+	//Se hace para agregarle los escuchadores en el VistaControlador.Java
+	public JButton getBtnSalir() {
+		return btnSalir;
 	}
+	
+	
+	public JButton getBtnIngreso() {
+		return btnIngreso;
+	}
+	
+	public JPasswordField getPwdContraseña() {
+		return pwdContraseña;
+	}
+	
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+
 
 }

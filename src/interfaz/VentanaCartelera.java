@@ -16,9 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-public class VentanaCartelera extends JFrame implements ActionListener {
+import interfaz.VentanaPeliculas.VentanaPelicula;
 
-	private JPanel pnlPrincipal;
+public class VentanaCartelera extends JPanel{
+
 	private JPanel pnlCartelera;
 	private JButton btnSalir;
 	private JPanel pnlPeliculas;
@@ -28,57 +29,30 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 	private JButton peliculaScream;
 	private JButton peliculaSpiderman;
 	String movieName ="";
-	VentanaPelicula pelicula = new VentanaPelicula(movieName);
 
 	public VentanaCartelera() {
 
-		setSize(700, 700);
-		setTitle("Cartelera");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
-
-	}
-	
-	
-
-	private void iniciarComponentes() {
-
-		crearPaneles();
-
-	}
-
-	private void crearPaneles() {
-		crearPanelPrincipal();
-		crearPanelCartelera();
-	}
-
-	private void crearPanelPrincipal() {
-
-		pnlPrincipal = new JPanel();
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
+		
+		JPanel pnlPrincipal = new JPanel();
 		pnlPrincipal.setBackground(Color.GRAY);
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
-
+		this.add(pnlPrincipal);
+		
 		btnSalir = new JButton();
 		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
 				btnSalir.getHeight(), Image.SCALE_SMOOTH)));
 
 		pnlPrincipal.add(btnSalir);
-
-	}
-
-	private void crearPanelCartelera() {
-
-		// se crea el panel cartelera
-		pnlCartelera = new JPanel();
+		
+		JPanel pnlCartelera = new JPanel();
 		pnlCartelera.setBackground(Color.LIGHT_GRAY);
 		pnlCartelera.setBounds(50, 90, 600, 470);
 		pnlCartelera.setLayout(null);
@@ -93,7 +67,8 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 
 		pnlCartelera.add(lblPeliculas);
 
-		pnlPeliculas = new JPanel();
+		
+		JPanel pnlPeliculas = new JPanel();
 
 		pnlPeliculas.setBounds(10, 70, 580, 390);
 		pnlPeliculas.setPreferredSize(new Dimension (1050, 370));
@@ -110,12 +85,9 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 
 		pnlCartelera.add(Scroll);
 		
-		//Encanto
-
 		peliculaEncanto = new JButton();
 		peliculaEncanto.setBounds(50, 10, 150, 225);
 		peliculaEncanto.setContentAreaFilled(false);
-		peliculaEncanto.addActionListener(this);
 		ImageIcon imagenEncanto = new ImageIcon("./img/Encanto.jpg");
 
 		peliculaEncanto.setIcon(new ImageIcon(imagenEncanto.getImage().getScaledInstance(peliculaEncanto.getWidth(),
@@ -133,7 +105,6 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 		peliculaMoonfall = new JButton();
 		peliculaMoonfall.setBounds(250, 10, 150, 225);
 		peliculaMoonfall.setContentAreaFilled(false);
-		peliculaMoonfall.addActionListener(this);
 		ImageIcon imagenMoonfall = new ImageIcon("./img/Moonfall.jpg");
 
 		peliculaMoonfall.setIcon(new ImageIcon(imagenMoonfall.getImage().getScaledInstance(peliculaMoonfall.getWidth(),
@@ -152,7 +123,6 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 		peliculaPaseo6 = new JButton();
 		peliculaPaseo6.setBounds(450, 10, 150, 225);
 		peliculaPaseo6.setContentAreaFilled(false);
-		peliculaPaseo6.addActionListener(this);
 		ImageIcon imagenPaseo6 = new ImageIcon("./img/Paseo6.jpg");
 
 		peliculaPaseo6.setIcon(new ImageIcon(imagenPaseo6.getImage().getScaledInstance(peliculaPaseo6.getWidth(),
@@ -171,7 +141,6 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 		peliculaScream = new JButton();
 		peliculaScream.setBounds(650, 10, 150, 225);
 		peliculaScream.setContentAreaFilled(false);
-		peliculaScream.addActionListener(this);
 		ImageIcon imagenScream = new ImageIcon("./img/Scream.jpg");
 
 		peliculaScream.setIcon(new ImageIcon(imagenScream.getImage().getScaledInstance(peliculaScream.getWidth(),
@@ -190,7 +159,6 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 		peliculaSpiderman = new JButton();
 		peliculaSpiderman.setBounds(850, 10, 150, 225);
 		peliculaSpiderman.setContentAreaFilled(false);
-		peliculaSpiderman.addActionListener(this);
 		ImageIcon imagenSpiderman = new ImageIcon("./img/Spiderman.jpg");
 
 		peliculaSpiderman.setIcon(new ImageIcon(imagenSpiderman.getImage().getScaledInstance(peliculaSpiderman.getWidth(),
@@ -205,57 +173,95 @@ public class VentanaCartelera extends JFrame implements ActionListener {
 		pnlPeliculas.add(lblPeliculaSpiderman);
 		
 		pnlPrincipal.add(pnlCartelera);
-
+		
+		
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnSalir) {
-			this.dispose();
-			System.out.println("Ha regresado a la ventana de inicio");
-
-			VentanaInicio v1 = new VentanaInicio();
-			v1.setVisible(true);
-			
-			
-		}
-		else if(e.getSource()==peliculaEncanto) {
-			
-			System.out.println("Selecciono: Encanto");
-			movieName = "Encanto";
-			pelicula = new VentanaPelicula(movieName);
-			pelicula.setVisible(true);
-			this.dispose();
-		}
-		else if(e.getSource()==peliculaMoonfall) {
-			System.out.println("Selecciono: Moonfall");
-			movieName = "Moonfall";
-			pelicula = new VentanaPelicula(movieName);
-			pelicula.setVisible(true);
-			this.dispose();
-		}
-		else if(e.getSource()==peliculaPaseo6) {
-			System.out.println("Selecciono: Paseo 6");
-			movieName = "Paseo6";
-			pelicula = new VentanaPelicula(movieName);
-			pelicula.setVisible(true);
-			this.dispose();
-		}
-		else if(e.getSource()==peliculaScream) {
-			System.out.println("Selecciono: Scream");
-			movieName = "Scream";
-			pelicula = new VentanaPelicula(movieName);
-			pelicula.setVisible(true);
-			this.dispose();
-		}
-		else if(e.getSource()==peliculaSpiderman) {
-			System.out.println("Selecciono: Spiderman");
-			movieName = "Spiderman";
-			pelicula = new VentanaPelicula(movieName);
-			pelicula.setVisible(true);
-			this.dispose();
-		}
+	
 	
 
+
+
+
+	
+	public JButton getBtnSalir() {
+		return btnSalir;
 	}
+	
+	public JButton getBtnPeliculaEncanto() {
+		return peliculaEncanto;
+	}
+	
+	public JButton getBtnPeliculaMoonfall() {
+		return peliculaMoonfall;
+	}
+	
+	public JButton getBtnPeliculaPaseo6() {
+		return peliculaPaseo6;
+	}
+	
+	public JButton getBtnPeliculaScream() {
+		return peliculaScream;
+	}
+	
+	public JButton getBtnPeliculaSpiderman() {
+		return peliculaSpiderman;
+	}
+	
+	
+	
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		if (e.getSource() == btnSalir) {
+//			this.dispose();
+//			System.out.println("Ha regresado a la ventana de inicio");
+//
+//			VentanaInicio v1 = new VentanaInicio();
+//			v1.setVisible(true);
+//			
+//			
+//		}
+//		else if(e.getSource()==peliculaEncanto) {
+//			
+//			System.out.println("Selecciono: Encanto");
+//			movieName = "Encanto";
+//			pelicula = new VentanaPelicula();
+//			pelicula.setPelicula(movieName);
+//			pelicula.setVisible(true);
+//			this.dispose();
+//		}
+//		else if(e.getSource()==peliculaMoonfall) {
+//			System.out.println("Selecciono: Moonfall");
+//			movieName = "Moonfall";
+//			pelicula = new VentanaPelicula();
+//			pelicula.setPelicula(movieName);
+//			pelicula.setVisible(true);
+//			this.dispose();
+//		}
+//		else if(e.getSource()==peliculaPaseo6) {
+//			System.out.println("Selecciono: Paseo 6");
+//			movieName = "Paseo6";
+//			pelicula = new VentanaPelicula();
+//			pelicula.setPelicula(movieName);
+//			pelicula.setVisible(true);
+//			this.dispose();
+//		}
+//		else if(e.getSource()==peliculaScream) {
+//			System.out.println("Selecciono: Scream");
+//			movieName = "Scream";
+//			pelicula = new VentanaPelicula();
+//			pelicula.setPelicula(movieName);
+//			pelicula.setVisible(true);
+//			this.dispose();
+//		}
+//		else if(e.getSource()==peliculaSpiderman) {
+//			System.out.println("Selecciono: Spiderman");
+//			movieName = "Spiderman";
+//			pelicula = new VentanaPelicula();
+//			pelicula.setPelicula(movieName);
+//			pelicula.setVisible(true);
+//			this.dispose();
+//		}
+//	
+//
+//	}
 }

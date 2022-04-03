@@ -380,7 +380,8 @@ public class VentanaSnacks extends JFrame implements ActionListener, KeyListener
 	
 		}else if(e.getSource()==btnSalir) {
 			
-			VentanaCompraSilla vcs = new VentanaCompraSilla(Pelicula, Cine);
+			VentanaCompraSilla vcs = new VentanaCompraSilla();
+			vcs.recibirPeliculaCine(Pelicula, Cine);
 			this.setVisible(false);
 			vcs.setVisible(true);
 			
