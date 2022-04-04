@@ -30,7 +30,13 @@ public class ControladorEvento implements ActionListener, KeyListener{
 		
 		if(e.getSource() == interfaz.getVentanaInicio().getBtnIngreso()){
 			
-			interfaz.getFachada().cambiarPanel(interfaz.getVentanaInicio(), interfaz.getVentanaCartelera());
+			if(interfaz.getFachada().esAdmin(interfaz.getVentanaInicio())){
+				
+				interfaz.getFachada().ingresoAdmin(interfaz.getVentanaInicio(),interfaz.getVentanaAdmin());
+			}else {
+				
+				interfaz.getFachada().cambiarPanel(interfaz.getVentanaInicio(), interfaz.getVentanaCartelera());
+			}
 			
 		}
 		
@@ -39,7 +45,7 @@ public class ControladorEvento implements ActionListener, KeyListener{
 		//Boton Salir
 		if(e.getSource() == interfaz.getVentanaCartelera().getBtnSalir()) {
 			
-			interfaz.getVentanaInicio().getTxtNombre().setText("");
+			interfaz.getVentanaInicio().getFTxtNombre().setText("");
 			interfaz.getVentanaInicio().getPwdContraseña().setText("");
 			interfaz.getFachada().cambiarPanel(interfaz.getVentanaCartelera(), interfaz.getVentanaInicio());
 		}
@@ -195,8 +201,7 @@ public class ControladorEvento implements ActionListener, KeyListener{
 		
 		if(e.getSource() == interfaz.getVentanaCompraSilla().getBtnContinue()) {
 			
-			interfaz.getFachada().sillasSeleccionadas(interfaz.getVentanaCompraSilla());
-			interfaz.getFachada().ingresoCompraSillaCompraSnack(interfaz.getVentanaCompraSilla(), interfaz.getVentanaSnacks());
+			interfaz.getFachada().sillasSeleccionadas(interfaz.getVentanaCompraSilla(), interfaz.getVentanaSnacks());
 			
 		}
 		if(e.getSource() == interfaz.getVentanaCompraSilla().getBtnSalir()) {
@@ -269,6 +274,37 @@ public class ControladorEvento implements ActionListener, KeyListener{
 			interfaz.getFachada().regresoSnacksSilla(interfaz.getVentanaSnacks(), interfaz.getVentanaCompraSilla());
 		}
 		
+		// // // // // // // // // // // // // //  // // VENTANA ADMIN // // // // // // // // // // // // // // // //
+		
+		if(e.getSource() == interfaz.getVentanaAdmin().getBtnAgregarEmpleado()) {
+			interfaz.getFachada().ingresoAdminRegistro(interfaz.getVentanaAdmin(), interfaz.getVentanaRegistroUsuario());
+		}
+		if (e.getSource() == interfaz.getVentanaAdmin().getBtnCambiarContraseña()) {
+			interfaz.getFachada().ingresoAdminContraseña(interfaz.getVentanaEstablecerContraseña(), interfaz.getVentanaAdmin());
+		}
+		if (e.getSource() == interfaz.getVentanaAdmin().getBtnCerrarSesion()) {
+
+			interfaz.getFachada().cerrarSesionAdmin(interfaz.getVentanaInicio(), interfaz.getVentanaAdmin());
+		}
+		
+		// // // // // // // // // // // // // //  // // VENTANA ESTABLECER CONTRASEÑA // // // // // // // // // // // // // // // //
+
+		if(e.getSource() == interfaz.getVentanaEstablecerContraseña().getBtnSalir()) {
+			
+			interfaz.getFachada().regresoContraseñaAdmin(interfaz.getVentanaEstablecerContraseña(), interfaz.getVentanaAdmin());
+		}if(e.getSource() == interfaz.getVentanaEstablecerContraseña().getBtnContinue()) {
+			
+			interfaz.getFachada().establecerContraseñaExitoso(interfaz.getVentanaEstablecerContraseña());
+		}
+		
+		// // // // // // // // // // // // // //  // // VENTANA AGREGAR EMPLEADO // // // // // // // // // // // // // // // //
+		if(e.getSource() == interfaz.getVentanaRegistroUsuario().getBtnSalir()) {
+			
+			interfaz.getFachada().regresoRegistroAdmin(interfaz.getVentanaRegistroUsuario(), interfaz.getVentanaAdmin());
+		}
+		if(e.getSource() == interfaz.getVentanaRegistroUsuario().getBtnIngreso()) {
+			interfaz.getFachada().registroEmpleadoExitoso(interfaz.getVentanaRegistroUsuario());
+		}
 		
 		
 	}

@@ -7,12 +7,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
+import interfaz.VentanaAdmin;
 import interfaz.VentanaCartelera;
 import interfaz.VentanaCompraSilla;
+import interfaz.VentanaEstablecerContraseña;
 import interfaz.VentanaIngresoCliente;
 import interfaz.VentanaInicio;
 import interfaz.VentanaRecuperarContraseña;
 import interfaz.VentanaRegistroCliente;
+import interfaz.VentanaRegistroUsuario;
 import interfaz.VentanaSnacks;
 import interfaz.VistaControlador;
 import interfaz.VentanaPeliculas.VentanaPeliculaEncanto;
@@ -61,7 +64,7 @@ public class Fachada {
 		
 		
 		String myPass = String.valueOf(vi.getPwdContraseña().getPassword()); 
-		String myName = String.valueOf(vi.getTxtNombre().getText());
+		String myName = vi.getTxtNombre();
 				
 //Debe hacer la comprobación si es admin, o no; y si esta en la basse de datos
 		if (myName.isEmpty() || myPass.isEmpty()) {
@@ -337,7 +340,7 @@ public class Fachada {
 	
 	// // // // // // // // // // VENTANA COMPRA SILLA // // // // // // // // // // 
 
-	public void sillasSeleccionadas(VentanaCompraSilla vcs) {
+	public void sillasSeleccionadas(VentanaCompraSilla vcs, VentanaSnacks vs) {
 		
 		if(!vcs.getSpnGeneral().isEnabled() && !vcs.getSpnPreferencial().isEnabled()) {
 
@@ -357,6 +360,10 @@ public class Fachada {
 				
 			System.out.println("Sillas seleccionadas: "+Sillas); 
 			
+			System.out.println("Ingreso a la Ventana de Snacks");
+			vcs.setVisible(false);
+			vs.setVisible(true);
+			
 		}
 		
 	}
@@ -369,13 +376,11 @@ public class Fachada {
 		
 	}
 	
-	public void ingresoCompraSillaCompraSnack(VentanaCompraSilla vcs, VentanaSnacks vs) {
+	
 		
-		System.out.println("Ingreso a la Ventana de Snacks");
-		vcs.setVisible(false);
-		vs.setVisible(true);
+	
 		
-	}
+	
 	
 	// // // // // // // // // VENTANA REGISTRO CLIENTE// // // // // // // // //
 
@@ -399,7 +404,7 @@ public class Fachada {
 		}
 		else if(vrc.getTxtApellido().getText().isEmpty() || vrc.getTxtContraseña().getText().isEmpty() || vrc.getTxtDocumento().getText().isEmpty() || vrc.getTxtNombre().getText().isEmpty()){
 			
-			JOptionPane.showMessageDialog(null, "Porfavor no deje espacios en blanco");
+			JOptionPane.showMessageDialog(null, "Porfavor no deje espacios en blanco", "Espacios en blanco", JOptionPane.ERROR_MESSAGE);
 			vrc.getBtnIngreso().setEnabled(false);
 			vrc.getCbxAutorizacion().setSelected(false);
 			return false;
@@ -574,13 +579,13 @@ public class Fachada {
 		if (vs.getIntSpnComb3() != 0 && vs.getSpnCombo3().isEnabled()) {
 
 			System.out.println(
-					"→ " + vs.getIntSpnComb3() + " Combos N°1.......................................$" + vs.getIntSpnComb3() * 500);
+					"→ " + vs.getIntSpnComb3() + " Combos N°3.......................................$" + vs.getIntSpnComb3() * 500);
 
 		}
 		if (vs.getIntSpnComb4() != 0 && vs.getSpnCombo4().isEnabled()) {
 
 			System.out.println(
-					"→ " + vs.getIntSpnComb4() + " Combos N°1.......................................$" + vs.getIntSpnComb4() * 1500);
+					"→ " + vs.getIntSpnComb4() + " Combos N°4.......................................$" + vs.getIntSpnComb4() * 1500);
 
 		}
 		
@@ -594,8 +599,113 @@ public class Fachada {
 		vcs.setVisible(true);
 		
 	}
-
+	
+	public Boolean esAdmin(VentanaInicio vi) {
 		
+		if(vi.getTxtNombre().equalsIgnoreCase("Admin") && vi.getTxtContraseña().equalsIgnoreCase("Admin")){
+
+			
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
+	public void ingresoAdmin(VentanaInicio vi, VentanaAdmin va) {
+		
+		vi.setVisible(false);
+		va.setVisible(true);
+		
+		System.out.println("Bienvenido Patrón!");
+	}
+
+	////////////////////////////////////////VENTANA ADMIN///////////////////////////////////////////////
+	public void cerrarSesionAdmin(VentanaInicio vi, VentanaAdmin va) {
+		
+		System.out.println("Regresó a Ventana Inicio");
+		va.setVisible(false);
+		vi.setVisible(true);
+		
+	}
+	
+	public void ingresoAdminContraseña(VentanaEstablecerContraseña vec, VentanaAdmin va) {
+		
+		System.out.println("Ingresó a Ventana Establecer Contraseña");
+		va.setVisible(false);
+		vec.setVisible(true);
+		
+	}
+	
+	public void ingresoAdminRegistro(VentanaAdmin va, VentanaRegistroUsuario vru) {
+		
+		System.out.println("Ingreso a VentanaRegistroUsuario");
+		va.setVisible(false);
+		vru.setVisible(true);
+	}
+	
+	/////////////////////////////////////////////VENTANA ESTABLECER CONTRASEÑA ///////////////////////////////////7
+	
+	public void regresoContraseñaAdmin(VentanaEstablecerContraseña vec, VentanaAdmin va) {
+		
+		System.out.println("regreso a Ventana Admin");
+		va.setVisible(true);
+		vec.setVisible(false);
+		
+	}
+	
+	public boolean establecerContraseñaExitoso(VentanaEstablecerContraseña vec) {
+		
+		if(vec.getFTxtCodigo().getText().isEmpty() || vec.getFTxtContraseña().getText().isEmpty()) {
+			
+			JOptionPane.showMessageDialog(null, "Porfavor no deje espacios en blanco", "Espacios en blanco", JOptionPane.ERROR_MESSAGE);
+			return false;
+
+		}
+		else {
+			
+			JOptionPane.showMessageDialog(null, "Cambio de contraseña exitoso","Cambio Exitoso",  JOptionPane.INFORMATION_MESSAGE);
+
+			return true;
+		}
+		
+	}
+	
+	/////////////////////////////////////////////////////VETNANA REGISTRO USUSARIO ////////////////////////////////////
+	
+	public void regresoRegistroAdmin(VentanaRegistroUsuario vru, VentanaAdmin va) {
+		
+		System.out.println("regreso a Ventana Admin");
+		va.setVisible(true);
+		vru.setVisible(false);
+		
+	}
+	
+	public boolean registroEmpleadoExitoso(VentanaRegistroUsuario vru) {
+		
+		if(vru.getFTxtContraseña().getText().isEmpty() || vru.getFTxtCorreo().getText().isEmpty() || vru.getFTxtDocumento().getText().isEmpty() || vru.getFTxtNombre().getText().isEmpty() || vru.getFTxtTelefono().getText().isEmpty()) {
+
+			JOptionPane.showMessageDialog(null, "Porfavor no deje espacios en blanco", "Espacios en blanco", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}else {
+			
+			String codigo= "" + vru.getTxtNombre().charAt(0)+vru.getTxtNombre().charAt(1)+vru.getTxtNombre().charAt(2)+vru.getTxtNombre().charAt(3)+
+					vru.getSelectedMultiplex().charAt(0)+vru.getSelectedMultiplex().charAt(1)+vru.getSelectedMultiplex().charAt(2)
+					+vru.getSelectedMultiplex().charAt(3)+vru.getSelectedMultiplex().charAt(4)
+					+vru.getTxtDocumento().charAt(0)+vru.getTxtDocumento().charAt(1)+vru.getTxtDocumento().charAt(2)+vru.getTxtDocumento().charAt(3)+vru.getTxtDocumento().charAt(4);
+			
+			JOptionPane.showMessageDialog(null, "Registro del empleado "+codigo+" exitoso!");
+			System.out.println("Codigo de empleado generado: "+codigo);
+			return true;
+		}
+		
+		
+		
+	}
+	
+	
+	
 	}
 	
 

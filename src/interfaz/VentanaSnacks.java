@@ -112,11 +112,11 @@ public class VentanaSnacks extends JPanel {
 		JLabel lblCombo1 = new JLabel();
 		lblCombo1.setText("Combo N°1");
 		lblCombo1.setFont(new Font("Comic Sans MS", 1, 20));
-		lblCombo1.setBounds(30, 20, 151, 30);
+		lblCombo1.setBounds(30, 40, 151, 30);
 		pnlCombos.add(lblCombo1);
 
 		tbtnImgCombo1 = new JToggleButton();
-		tbtnImgCombo1.setBounds(30, 50, 151, 150);
+		tbtnImgCombo1.setBounds(30, 70, 151, 150);
 		ImageIcon imagenCombo1 = new ImageIcon("./img/combos/imgCombo1bn.png");
 		tbtnImgCombo1.setIcon(new ImageIcon(imagenCombo1.getImage().getScaledInstance(tbtnImgCombo1.getWidth(),
 				tbtnImgCombo1.getHeight(), Image.SCALE_SMOOTH)));
@@ -125,7 +125,7 @@ public class VentanaSnacks extends JPanel {
 
 		SpinnerModel sm = new SpinnerNumberModel(1, 1, 9, 1);
 		spnCombo1 = new JSpinner(sm);
-		spnCombo1.setBounds(200, 160, 60, 40);
+		spnCombo1.setBounds(200, 180, 60, 40);
 		spnCombo1.setFont((new Font("Comic Sans MS", 0, 18)));
 		spnCombo1.setEditor(new JSpinner.DefaultEditor(spnCombo1));
 		spnCombo1.setEnabled(false);
@@ -135,9 +135,9 @@ public class VentanaSnacks extends JPanel {
 		JLabel DescCombo1 = new JLabel();
 		DescCombo1.setFont((new Font("Comic Sans MS", 0, 16)));
 		DescCombo1.setText(
-				"<html><body>1 Crispeta de sal 120 g + 2 perros calientes <br>+ 2 Gaseosas 640 ml + 1 Kit Kat 41 g + 1 chocolatina Jet 30 g");
+				"<html><body>1 Crispeta de sal 120 g + 2 perros calientes + 2 Gaseosas 640 ml + 1 Kit Kat 41 g + 1 chocolatina Jet 30 g");
 		DescCombo1.setOpaque(false);
-		DescCombo1.setBounds(200, 50, 350, 50);
+		DescCombo1.setBounds(200, 70, 350, 90);
 		pnlCombos.add(DescCombo1);
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////// 777
@@ -145,11 +145,11 @@ public class VentanaSnacks extends JPanel {
 		JLabel lblCombo2 = new JLabel();
 		lblCombo2.setText("Combo N°2");
 		lblCombo2.setFont(new Font("Comic Sans MS", 1, 20));
-		lblCombo2.setBounds(30, 220, 151, 30);
+		lblCombo2.setBounds(30, 280, 151, 30);
 		pnlCombos.add(lblCombo2);
 
 		tbtnImgCombo2 = new JToggleButton();
-		tbtnImgCombo2.setBounds(30, 250, 151, 150);
+		tbtnImgCombo2.setBounds(30, 310, 151, 150);
 		ImageIcon imagenCombo2 = new ImageIcon("./img/combos/imgCombo2bn.png");
 		tbtnImgCombo2.setIcon(new ImageIcon(imagenCombo2.getImage().getScaledInstance(tbtnImgCombo2.getWidth(),
 				tbtnImgCombo2.getHeight(), Image.SCALE_SMOOTH)));
@@ -158,23 +158,31 @@ public class VentanaSnacks extends JPanel {
 
 		SpinnerModel sm1 = new SpinnerNumberModel(1, 1, 9, 1);
 		spnCombo2 = new JSpinner(sm1);
-		spnCombo2.setBounds(200, 360, 60, 40);
+		spnCombo2.setBounds(200, 420, 60, 40);
 		spnCombo2.setFont((new Font("Comic Sans MS", 0, 18)));
 		spnCombo2.setEditor(new JSpinner.DefaultEditor(spnCombo2));
 		spnCombo2.setEnabled(false);
 
 		pnlCombos.add(spnCombo2);
+		
+		JLabel DescCombo2 = new JLabel();
+		DescCombo2.setFont((new Font("Comic Sans MS", 0, 16)));
+		DescCombo2.setText("<html><body>1 Crispeta de sal 120 g + 1 perro caliente + 1 Gaseosa 640 ml + 1 Kit Kat 41 g");
+		DescCombo2.setOpaque(false);
+		DescCombo2.setBounds(200, 310, 350, 90);
+		pnlCombos.add(DescCombo2);
+
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblCombo3 = new JLabel();
 		lblCombo3.setText("Combo N°3");
 		lblCombo3.setFont(new Font("Comic Sans MS", 1, 20));
-		lblCombo3.setBounds(30, 420, 151, 30);
+		lblCombo3.setBounds(30, 550, 151, 30);
 		pnlCombos.add(lblCombo3);
 
 		tbtnImgCombo3 = new JToggleButton();
-		tbtnImgCombo3.setBounds(30, 450, 151, 150);
+		tbtnImgCombo3.setBounds(30, 580, 151, 150);
 		ImageIcon imagenCombo3 = new ImageIcon("./img/combos/imgCombo3bn.png");
 		tbtnImgCombo3.setIcon(new ImageIcon(imagenCombo3.getImage().getScaledInstance(tbtnImgCombo3.getWidth(),
 				tbtnImgCombo3.getHeight(), Image.SCALE_SMOOTH)));
@@ -183,23 +191,30 @@ public class VentanaSnacks extends JPanel {
 
 		SpinnerModel sm3 = new SpinnerNumberModel(1, 1, 9, 1);
 		spnCombo3 = new JSpinner(sm3);
-		spnCombo3.setBounds(200, 560, 60, 40);
+		spnCombo3.setBounds(200, 690, 60, 40);
 		spnCombo3.setFont((new Font("Comic Sans MS", 0, 18)));
 		spnCombo3.setEditor(new JSpinner.DefaultEditor(spnCombo3));
 		spnCombo3.setEnabled(false);
 
 		pnlCombos.add(spnCombo3);
+		
+		JLabel DescCombo3 = new JLabel();
+		DescCombo3.setFont((new Font("Comic Sans MS", 0, 16)));
+		DescCombo3.setText("<html><body>1 Caja crispetas de sal 55 g + 1 Gaseosa 640 ml + 1 chocolatina Jet 30g");
+		DescCombo3.setOpaque(false);
+		DescCombo3.setBounds(200, 580, 350, 90);
+		pnlCombos.add(DescCombo3);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblCombo4 = new JLabel();
 		lblCombo4.setText("Combo N°4");
 		lblCombo4.setFont(new Font("Comic Sans MS", 1, 20));
-		lblCombo4.setBounds(30, 620, 151, 30);
+		lblCombo4.setBounds(30, 800, 151, 30);
 		pnlCombos.add(lblCombo4);
 
 		tbtnImgCombo4 = new JToggleButton();
-		tbtnImgCombo4.setBounds(30, 650, 151, 150);
+		tbtnImgCombo4.setBounds(30, 830, 151, 150);
 		ImageIcon imagenCombo4 = new ImageIcon("./img/combos/imgCombo4bn.png");
 		tbtnImgCombo4.setIcon(new ImageIcon(imagenCombo4.getImage().getScaledInstance(tbtnImgCombo4.getWidth(),
 				tbtnImgCombo4.getHeight(), Image.SCALE_SMOOTH)));
@@ -208,12 +223,20 @@ public class VentanaSnacks extends JPanel {
 
 		SpinnerModel sm4 = new SpinnerNumberModel(1, 1, 9, 1);
 		spnCombo4 = new JSpinner(sm4);
-		spnCombo4.setBounds(200, 760, 60, 40);
+		spnCombo4.setBounds(200, 940, 60, 40);
 		spnCombo4.setFont((new Font("Comic Sans MS", 0, 18)));
 		spnCombo4.setEditor(new JSpinner.DefaultEditor(spnCombo4));
 		spnCombo4.setEnabled(false);
 
 		pnlCombos.add(spnCombo4);
+		
+		JLabel DescCombo4 = new JLabel();
+		DescCombo4.setFont((new Font("Comic Sans MS", 0, 16)));
+		DescCombo4.setText("<html><body>1 Crispeta de sal 150 g + 2 Gaseosas 640 ml");
+		DescCombo4.setOpaque(false);
+		DescCombo4.setBounds(200, 830, 350, 90);
+		pnlCombos.add(DescCombo4);
+
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

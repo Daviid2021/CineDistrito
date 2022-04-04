@@ -179,8 +179,18 @@ public class VentanaInicio extends JPanel {
 		return pwdContraseña;
 	}
 	
-	public JTextField getTxtNombre() {
+	public JTextField getFTxtNombre() {
 		return txtNombre;
+	}
+	
+	public String getTxtNombre() {
+		return txtNombre.getText();
+	}
+	
+	public String getTxtContraseña() {
+		
+		String myPass = String.valueOf(pwdContraseña.getPassword());
+		return  myPass;
 	}
 
 

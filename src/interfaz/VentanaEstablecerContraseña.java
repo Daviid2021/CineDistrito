@@ -18,12 +18,12 @@ import javax.swing.JTextField;
 
 import lógica.Verificar;
 
-	public class VentanaEstablecerContraseña extends JPanel implements ActionListener{
+	public class VentanaEstablecerContraseña extends JPanel{
 
 		private JPanel pnlPrincipal;
 		private JTextField txtContraseña;
 		private JTextField txtCodigo;
-		private JButton btnIngreso;
+		private JButton btnContinue;
 		private JButton btnSalir;
 		private String Cine;
 		private String Pelicula;
@@ -34,43 +34,31 @@ import lógica.Verificar;
 
 		public VentanaEstablecerContraseña() {
 			
-			iniciarComponentes();
-		}
-		
-
-		private void iniciarComponentes() {
+			this.setBounds(0, 0, 700, 700);
+			this.setLayout(null);
 			
-			crearPanelPrincipal();
-			crearPanelCodigo();
-			crearPanelContraseña();
-			
-		}
-		
-		private void crearPanelPrincipal() {
-			
-			pnlPrincipal = new JPanel();
+			JPanel pnlPrincipal = new JPanel();
+			pnlPrincipal.setBounds(0, 0, 700, 700);
 			pnlPrincipal.setBackground(Color.GRAY);
 			pnlPrincipal.setLayout(null);
 			this.add(pnlPrincipal);
 			
 			
-			btnIngreso = new JButton();
-			btnIngreso.setBounds(280, 520, 134, 54);
-			btnIngreso.addActionListener(this);
-			btnIngreso.setContentAreaFilled(false);
-			ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnIngreso.png");
-			btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
-					btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
+			btnContinue = new JButton();
+			btnContinue.setBounds(280, 520, 134, 54);
+			btnContinue.setContentAreaFilled(false);
+			ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnContinue.png");
+			btnContinue.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnContinue.getWidth(),
+					btnContinue.getHeight(), Image.SCALE_SMOOTH)));
 			
 
-			pnlPrincipal.add(btnIngreso);
+			pnlPrincipal.add(btnContinue);
 			
 			
 			btnSalir = new JButton();
 			btnSalir.setBounds(20, 20, 60, 40);
 			btnSalir.setContentAreaFilled(false);
 			btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
-			btnSalir.addActionListener(this);
 			ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 			btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
@@ -86,12 +74,6 @@ import lógica.Verificar;
 			
 			pnlPrincipal.add(lblContraseña);
 			
-			
-		}
-		
-		
-		private void crearPanelCodigo() {
-
 			JPanel pnlCodigo = new JPanel();
 			// pnlNombre.setBackground(Color.DARK_GRAY);
 			pnlCodigo.setLayout(null);
@@ -119,11 +101,7 @@ import lógica.Verificar;
 			pnlCodigo.add(txtCodigo);
 
 			pnlPrincipal.add(pnlCodigo);
-
-		}
-
-		private void crearPanelContraseña() {
-
+			
 			JPanel pnlContraseña = new JPanel();
 			// pnlContraseña.setBackground(Color.GRAY);
 			pnlContraseña.setLayout(null);
@@ -147,9 +125,45 @@ import lógica.Verificar;
 			
 
 			pnlPrincipal.add(pnlContraseña);
-
+			
 		}
 
+
+
+		public JButton getBtnContinue() {
+			return btnContinue;
+		}
+
+
+
+		public JButton getBtnSalir() {
+			return btnSalir;
+		}
+
+
+
+		public JTextField getFTxtContraseña() {
+			return txtContraseña;
+		}
+
+
+
+		public JTextField getFTxtCodigo() {
+			return txtCodigo;
+		}
+		
+		public String getTxtContraseña() {
+			return txtContraseña.getText();
+		}
+		
+		public String getTxtCodigo() {
+			return txtCodigo.getText();
+		}
+		
+
+		
+
+/*
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==btnIngreso) {
@@ -200,7 +214,7 @@ import lógica.Verificar;
 
 
 		
-		
+		*/
 		
 	
 }

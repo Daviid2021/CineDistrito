@@ -21,9 +21,8 @@ import javax.swing.JTextField;
 
 import lógica.Verificar;
 
-public class VentanaRegistroUsuario extends JFrame implements ActionListener, KeyListener {
+public class VentanaRegistroUsuario extends JPanel {
 
-	private JPanel pnlPrincipal;
 	private JButton btnSalir;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
@@ -36,41 +35,25 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	private JCheckBox cbxAutorizacion;
 	private JButton btnIngreso;
 	private JLabel lblIngresoUsuario;
+	
 
-	private String Cine;
-	private String Pelicula;
 
 	public VentanaRegistroUsuario() {
 
-		setSize(700, 700);
-		setTitle("Registro Empleado");
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		iniciarComponentes();
 
-	}
-
-
-	private void iniciarComponentes() {
-
-		crearPanelPrincipal();
-		crearComponentes();
-
-	}
-
-	private void crearPanelPrincipal() {
-
-		pnlPrincipal = new JPanel();
+		this.setBounds(0, 0, 700, 700);
+		this.setLayout(null);
+		
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setBounds(0, 0, 700, 700);
 		pnlPrincipal.setBackground(Color.GRAY);
 		pnlPrincipal.setLayout(null);
-		this.getContentPane().add(pnlPrincipal);
+		this.add(pnlPrincipal);
 
 		btnSalir = new JButton();
 		btnSalir.setBounds(20, 20, 60, 40);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(BorderFactory.createLineBorder(Color.GREEN, 0, true));
-		btnSalir.addActionListener(this);
 		ImageIcon imagenSalir = new ImageIcon("./img/exitArrow.png");
 
 		btnSalir.setIcon(new ImageIcon(imagenSalir.getImage().getScaledInstance(btnSalir.getWidth(),
@@ -89,17 +72,13 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 
 		btnIngreso = new JButton();
 		btnIngreso.setBounds(280, 580, 134, 54);
-		btnIngreso.addActionListener(this);
 		btnIngreso.setContentAreaFilled(false);
 		ImageIcon imagenIngreso = new ImageIcon("./img/imgBtnRegistro.png");
 		btnIngreso.setIcon(new ImageIcon(imagenIngreso.getImage().getScaledInstance(btnIngreso.getWidth(),
 				btnIngreso.getHeight(), Image.SCALE_SMOOTH)));
 
 		pnlPrincipal.add(btnIngreso);
-
-	}
-
-	private void crearComponentes() {
+		
 
 		JLabel lblNombre = new JLabel();
 		lblNombre.setText("Nombres & Apellidos: ");
@@ -111,7 +90,6 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		txtNombre = new JTextField();
 		txtNombre.setBounds(120, 140, 200, 30);
 		txtNombre.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtNombre.addKeyListener(this);
 
 		pnlPrincipal.add(txtNombre);
 
@@ -127,7 +105,6 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		txtTelefono = new JTextField();
 		txtTelefono.setBounds(400, 140, 200, 30);
 		txtTelefono.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtTelefono.addKeyListener(this);
 
 		pnlPrincipal.add(txtTelefono);
 
@@ -173,7 +150,6 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		txtDocumento = new JTextField();
 		txtDocumento.setBounds(400, 340, 200, 30);
 		txtDocumento.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		txtDocumento.addKeyListener(this);
 
 		pnlPrincipal.add(txtDocumento);
 
@@ -215,7 +191,6 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		cmbCargo.addItem("Encargado Sala");
 		cmbCargo.addItem("Aseador");
 		cmbCargo.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		cmbCargo.addActionListener(this);
 
 		pnlPrincipal.add(cmbCargo);
 		
@@ -229,7 +204,6 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		cmbRol = new JComboBox<>();
 		cmbRol.addItem("Rol aún no disponible");
 		cmbRol.setBounds(400, 440, 190, 30);
-		cmbRol.addActionListener(this);
 		cmbRol.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
 		pnlPrincipal.add(cmbRol);
@@ -239,6 +213,88 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		
 
 	}
+
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+
+
+	public JTextField getFTxtNombre() {
+		return txtNombre;
+	}
+	
+	public String getTxtNombre() {
+		return txtNombre.getText();
+	}
+
+
+	public JTextField getFTxtTelefono() {
+		return txtTelefono;
+	}
+	
+	public String getTxtTelefono() {
+		return txtTelefono.getText();
+	}
+
+
+	public String getTxtCorreo() {
+		return txtCorreo.getText();
+	}
+	
+	public JTextField getFTxtCorreo() {
+		return txtCorreo;
+	}
+
+
+	public String getTxtContraseña() {
+		return txtContraseña.getText();
+	}
+	
+	public JTextField getFTxtContraseña() {
+		return txtContraseña;
+	}
+
+
+	public JTextField getFTxtDocumento() {
+		return txtDocumento;
+	}
+	
+	public String getTxtDocumento() {
+		return txtDocumento.getText();
+	}
+
+
+	public JComboBox<String> getCmbMultiplex() {
+		return cmbMultiplex;
+	}
+
+
+	public JComboBox<String> getCmbCargo() {
+		return cmbCargo;
+	}
+
+
+	public JComboBox<String> getCmbRol() {
+		return cmbRol;
+	}
+
+
+	public JCheckBox getCbxAutorizacion() {
+		return cbxAutorizacion;
+	}
+
+
+	public JButton getBtnIngreso() {
+		return btnIngreso;
+	}
+	
+	public String getSelectedMultiplex() {
+		
+		return (String)cmbMultiplex.getSelectedItem();
+	}
+
+
 
 	/*
 	 * Método que devuelve el código del empleado una vez que se registra (Se debe
@@ -254,13 +310,8 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 	 */
 
 	//Cargo o Multiplex
-	private static String crearCodigo(String Nombre, String Cargo, String Documento) {
 
-		String retorno = "" + Nombre.charAt(0) + Nombre.charAt(1) + Nombre.charAt(2) + Nombre.charAt(3) +  Cargo.charAt(0) + Cargo.charAt(1) + 
-						Cargo.charAt(2) + Cargo.charAt(3)+ Documento.charAt(0)	+ Documento.charAt(1)+ Documento.charAt(2)+ Documento.charAt(3);
-		
-		return retorno;
-	}
+	/*
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -358,6 +409,7 @@ public class VentanaRegistroUsuario extends JFrame implements ActionListener, Ke
 		// TODO Auto-generated method stub
 
 	}
+	*/
 
 }
 

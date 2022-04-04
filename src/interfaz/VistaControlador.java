@@ -59,8 +59,8 @@ public class VistaControlador extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-//		VentanaAdmin va = new VentanaAdmin();
-//		this.add(va);
+		va = new VentanaAdmin();
+		this.add(va);
 		
 		vrcontraseña = new VentanaRecuperarContraseña();
 		this.add(vrcontraseña);
@@ -71,8 +71,8 @@ public class VistaControlador extends JFrame{
 		vcs = new VentanaCompraSilla();
 		this.add(vcs);
 		
-//		VentanaEstablecerContraseña vec = new VentanaEstablecerContraseña();
-//		this.add(vec);
+		vec = new VentanaEstablecerContraseña();
+		this.add(vec);
 		
 		vic = new VentanaIngresoCliente();
 		this.add(vic);
@@ -101,8 +101,8 @@ public class VistaControlador extends JFrame{
 		vrc = new VentanaRegistroCliente();
 		this.add(vrc);
 		
-//		VentanaRegistroUsuario vru = new VentanaRegistroUsuario();
-//		this.add(vru);
+		vru = new VentanaRegistroUsuario();
+		this.add(vru);
 		
 		vs = new VentanaSnacks();
 		this.add(vs);
@@ -112,10 +112,10 @@ public class VistaControlador extends JFrame{
 		vi.setVisible(true);
 		
 //		vcc.setVisible(false);
-//		va.setVisible(false);
+		va.setVisible(false);
 		vc.setVisible(false);
 		vcs.setVisible(false);
-//		vec.setVisible(false);
+		vec.setVisible(false);
 		vic.setVisible(false);
 		vpEncanto.setVisible(false);
 		vpMoonfall.setVisible(false);
@@ -124,7 +124,7 @@ public class VistaControlador extends JFrame{
 		vpSpiderman.setVisible(false);
 		vrcontraseña.setVisible(false);
 		vrc.setVisible(false);
-//		vru.setVisible(false);
+		vru.setVisible(false);
 		vs.setVisible(false);
 		
 	}
@@ -266,6 +266,18 @@ public class VistaControlador extends JFrame{
 		vs.getTbtnImgCombo3().addActionListener(getControl());
 		vs.getTbtnImgCombo4().addActionListener(getControl());
 		
+		va.getBtnAgregarEmpleado().addActionListener(getControl());
+		va.getBtnCambiarContraseña().addActionListener(getControl());
+		va.getBtnCerrarSesion().addActionListener(getControl());
+		
+		vec.getBtnContinue().addActionListener(getControl());
+		vec.getBtnSalir().addActionListener(getControl());
+		
+		vru.getBtnIngreso().addActionListener(getControl());
+		vru.getBtnSalir().addActionListener(getControl());
+		
+		
+		
 		
 		
 		// 
@@ -324,6 +336,18 @@ public class VistaControlador extends JFrame{
 	
 	public VentanaSnacks getVentanaSnacks() {
 		return vs;
+	}
+	
+	public VentanaAdmin getVentanaAdmin() {
+		return va;
+	}
+	
+	public VentanaEstablecerContraseña getVentanaEstablecerContraseña() {
+		return vec;
+	}
+	
+	public VentanaRegistroUsuario getVentanaRegistroUsuario() {
+		return vru;
 	}
 	
 	public Fachada getFachada () {
