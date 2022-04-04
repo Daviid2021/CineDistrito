@@ -1,17 +1,19 @@
 package facade;
 
 import java.awt.Component;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 import interfaz.VentanaCartelera;
 import interfaz.VentanaCompraSilla;
-import interfaz.VentanaEstablecerContraseña;
 import interfaz.VentanaIngresoCliente;
 import interfaz.VentanaInicio;
 import interfaz.VentanaRecuperarContraseña;
 import interfaz.VentanaRegistroCliente;
+import interfaz.VentanaSnacks;
 import interfaz.VistaControlador;
 import interfaz.VentanaPeliculas.VentanaPeliculaEncanto;
 import interfaz.VentanaPeliculas.VentanaPeliculaMoonfall;
@@ -367,6 +369,16 @@ public class Fachada {
 		
 	}
 	
+	public void ingresoCompraSillaCompraSnack(VentanaCompraSilla vcs, VentanaSnacks vs) {
+		
+		System.out.println("Ingreso a la Ventana de Snacks");
+		vcs.setVisible(false);
+		vs.setVisible(true);
+		
+	}
+	
+	// // // // // // // // // VENTANA REGISTRO CLIENTE// // // // // // // // //
+
 
 	public void ingresoIngresoClienteRegistroCliente(VentanaRegistroCliente vrc, VentanaIngresoCliente vic) {
 		
@@ -470,6 +482,117 @@ public class Fachada {
 			vcs.getSpnPreferencial().setEnabled(false);
 		}
 
+	}
+	
+	// // // // // // // // // VENTANA SNACKS// // // // // // // // //
+
+
+	public void obtenerCombo1(VentanaSnacks vs) {
+		
+
+			
+			if(vs.getTbtnImgCombo1().isSelected()){
+				ImageIcon imagenCombo1 = new ImageIcon("./img/combos/imgCombo1.png");
+				vs.getTbtnImgCombo1().setIcon(new ImageIcon(imagenCombo1.getImage().getScaledInstance(vs.getTbtnImgCombo1().getWidth(),
+						vs.getTbtnImgCombo1().getHeight(), Image.SCALE_SMOOTH)));
+				vs.getSpnCombo1().setEnabled(true);
+			}else {
+				ImageIcon imagenCombo1 = new ImageIcon("./img/combos/imgCombo1bn.png");
+				vs.getTbtnImgCombo1().setIcon(new ImageIcon(imagenCombo1.getImage().getScaledInstance(vs.getTbtnImgCombo1().getWidth(),
+						vs.getTbtnImgCombo1().getHeight(), Image.SCALE_SMOOTH)));
+				vs.getSpnCombo1().setEnabled(false);
+			}
+			
+		
+		
+	}
+	
+	public void obtenerCombo2(VentanaSnacks vs) {
+		
+		
+		if(vs.getTbtnImgCombo2().isSelected()){
+			
+			ImageIcon imagenCombo2 = new ImageIcon("./img/combos/imgCombo2.png");
+			vs.getTbtnImgCombo2().setIcon(new ImageIcon(imagenCombo2.getImage().getScaledInstance(vs.getTbtnImgCombo2().getWidth(),
+					vs.getTbtnImgCombo2().getHeight(), Image.SCALE_SMOOTH)));
+			vs.getSpnCombo2().setEnabled(true);
+		}else {
+			ImageIcon imagenCombo2 = new ImageIcon("./img/combos/imgCombo2bn.png");
+			vs.getTbtnImgCombo2().setIcon(new ImageIcon(imagenCombo2.getImage().getScaledInstance(vs.getTbtnImgCombo2().getWidth(),
+					vs.getTbtnImgCombo2().getHeight(), Image.SCALE_SMOOTH)));
+			vs.getSpnCombo2().setEnabled(false);
+		}
+	}
+	
+	public void obtenerCombo3(VentanaSnacks vs) {
+		
+		if (vs.getTbtnImgCombo3().isSelected()) {
+
+			ImageIcon imagenCombo3 = new ImageIcon("./img/combos/imgCombo3.png");
+			vs.getTbtnImgCombo3().setIcon(new ImageIcon(imagenCombo3.getImage().getScaledInstance(vs.getTbtnImgCombo3().getWidth(),
+					vs.getTbtnImgCombo3().getHeight(), Image.SCALE_SMOOTH)));
+			vs.getSpnCombo3().setEnabled(true);
+		} else {
+			ImageIcon imagenCombo3 = new ImageIcon("./img/combos/imgCombo3bn.png");
+			vs.getTbtnImgCombo3().setIcon(new ImageIcon(imagenCombo3.getImage().getScaledInstance(vs.getTbtnImgCombo3().getWidth(),
+					vs.getTbtnImgCombo3().getHeight(), Image.SCALE_SMOOTH)));
+			vs.getSpnCombo3().setEnabled(false);
+		}
+		
+	}
+	public void obtenerCombo4(VentanaSnacks vs) {
+		
+		if (vs.getTbtnImgCombo4().isSelected()) {
+
+			ImageIcon imagenCombo4 = new ImageIcon("./img/combos/imgCombo4.png");
+			vs.getTbtnImgCombo4().setIcon(new ImageIcon(imagenCombo4.getImage().getScaledInstance(vs.getTbtnImgCombo4().getWidth(),
+					vs.getTbtnImgCombo4().getHeight(), Image.SCALE_SMOOTH)));
+			vs.getSpnCombo4().setEnabled(true);
+		} else {
+			ImageIcon imagenCombo4 = new ImageIcon("./img/combos/imgCombo4bn.png");
+			vs.getTbtnImgCombo4().setIcon(new ImageIcon(imagenCombo4.getImage().getScaledInstance(vs.getTbtnImgCombo4().getWidth(),
+					vs.getTbtnImgCombo4().getHeight(), Image.SCALE_SMOOTH)));
+			vs.getSpnCombo4().setEnabled(false);
+		}
+	}
+
+	public void facturaConsola(VentanaSnacks vs) {
+		
+		if (vs.getIntSpnComb1() != 0 && vs.getSpnCombo1().isEnabled()) {
+
+			//en lugar de un SYstem out, se podria llamar a un método que realizara estas "Cotizaciones"
+			System.out.println(
+					"→ " + vs.getIntSpnComb1() + " Combos N°1.......................................$" + vs.getIntSpnComb1()  * 3500);
+
+		}
+		if (vs.getIntSpnComb2() != 0 && vs.getSpnCombo2().isEnabled()) {
+
+			System.out.println(
+					"→ " + vs.getIntSpnComb2() + " Combos N°2.......................................$" + vs.getIntSpnComb2() * 2500);
+
+		}
+		if (vs.getIntSpnComb3() != 0 && vs.getSpnCombo3().isEnabled()) {
+
+			System.out.println(
+					"→ " + vs.getIntSpnComb3() + " Combos N°1.......................................$" + vs.getIntSpnComb3() * 500);
+
+		}
+		if (vs.getIntSpnComb4() != 0 && vs.getSpnCombo4().isEnabled()) {
+
+			System.out.println(
+					"→ " + vs.getIntSpnComb4() + " Combos N°1.......................................$" + vs.getIntSpnComb4() * 1500);
+
+		}
+		
+	}
+	
+	public void regresoSnacksSilla(VentanaSnacks vs, VentanaCompraSilla vcs) {
+		
+		System.out.println("Regresó a Ventana Compra Silla");
+		
+		vs.setVisible(false);
+		vcs.setVisible(true);
+		
 	}
 
 		

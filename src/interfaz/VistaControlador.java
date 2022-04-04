@@ -64,22 +64,22 @@ public class VistaControlador extends JFrame{
 		
 		vrcontraseña = new VentanaRecuperarContraseña();
 		this.add(vrcontraseña);
-//		
+		
 		vc = new VentanaCartelera();
 		this.add(vc);
-//		
+		
 		vcs = new VentanaCompraSilla();
 		this.add(vcs);
-//		
+		
 //		VentanaEstablecerContraseña vec = new VentanaEstablecerContraseña();
 //		this.add(vec);
-//		
+		
 		vic = new VentanaIngresoCliente();
 		this.add(vic);
-//		
+		
 		vi = new VentanaInicio();
 		this.add(vi);
-//		
+		
 //		vp = new VentanaPelicula();
 //		this.add(vp);
 		
@@ -97,15 +97,15 @@ public class VistaControlador extends JFrame{
 		
 		vpSpiderman = new VentanaPeliculaSpiderman();
 		this.add(vpSpiderman);
-//		
+		
 		vrc = new VentanaRegistroCliente();
 		this.add(vrc);
-//		
+		
 //		VentanaRegistroUsuario vru = new VentanaRegistroUsuario();
 //		this.add(vru);
-//		
-//		VentanaSnacks vs = new VentanaSnacks();
-//		this.add(vs);
+		
+		vs = new VentanaSnacks();
+		this.add(vs);
 		
 		
 		
@@ -125,7 +125,7 @@ public class VistaControlador extends JFrame{
 		vrcontraseña.setVisible(false);
 		vrc.setVisible(false);
 //		vru.setVisible(false);
-//		vs.setVisible(false);
+		vs.setVisible(false);
 		
 	}
 	
@@ -259,7 +259,12 @@ public class VistaControlador extends JFrame{
 		vrcontraseña.getBtnSalir().addActionListener(getControl());
 		vrcontraseña.getTxtDocumento().addKeyListener(getControl());
 		
-		
+		vs.getBtnContinue().addActionListener(getControl());
+		vs.getBtnSalir().addActionListener(getControl());
+		vs.getTbtnImgCombo1().addActionListener(getControl());
+		vs.getTbtnImgCombo2().addActionListener(getControl());
+		vs.getTbtnImgCombo3().addActionListener(getControl());
+		vs.getTbtnImgCombo4().addActionListener(getControl());
 		
 		
 		
@@ -315,6 +320,10 @@ public class VistaControlador extends JFrame{
 	public VentanaRecuperarContraseña getVentanaRecuperarContraseña() {
 		
 		return vrcontraseña;
+	}
+	
+	public VentanaSnacks getVentanaSnacks() {
+		return vs;
 	}
 	
 	public Fachada getFachada () {

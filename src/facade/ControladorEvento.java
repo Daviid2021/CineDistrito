@@ -196,6 +196,7 @@ public class ControladorEvento implements ActionListener, KeyListener{
 		if(e.getSource() == interfaz.getVentanaCompraSilla().getBtnContinue()) {
 			
 			interfaz.getFachada().sillasSeleccionadas(interfaz.getVentanaCompraSilla());
+			interfaz.getFachada().ingresoCompraSillaCompraSnack(interfaz.getVentanaCompraSilla(), interfaz.getVentanaSnacks());
 			
 		}
 		if(e.getSource() == interfaz.getVentanaCompraSilla().getBtnSalir()) {
@@ -211,7 +212,7 @@ public class ControladorEvento implements ActionListener, KeyListener{
 			
 			interfaz.getFachada().activarSpinnerPreferencial(interfaz.getVentanaCompraSilla());
 		}
-
+		
 		// // // // // // // // // VENTANA REGISTRO CLIENTE// // // // // // // // //
 		
 		if(e.getSource() == interfaz.getVentanaRegistroCliente().getBtnIngreso()) {
@@ -240,8 +241,33 @@ public class ControladorEvento implements ActionListener, KeyListener{
 			interfaz.getFachada().recuperarContraseña(interfaz.getVentanaRecuperarContraseña());
 		}
 		
-		
-		
+		// // // // // // // // // VENTANA SNACKS // // // // // // // // //
+
+		if(e.getSource() == interfaz.getVentanaSnacks().getTbtnImgCombo1()) {
+			
+			interfaz.getFachada().obtenerCombo1(interfaz.getVentanaSnacks());
+		}
+		if(e.getSource() == interfaz.getVentanaSnacks().getTbtnImgCombo2()) {
+			
+			interfaz.getFachada().obtenerCombo2(interfaz.getVentanaSnacks());
+		}
+		if(e.getSource() == interfaz.getVentanaSnacks().getTbtnImgCombo3()) {
+			
+			interfaz.getFachada().obtenerCombo3(interfaz.getVentanaSnacks());
+		}
+		if(e.getSource() == interfaz.getVentanaSnacks().getTbtnImgCombo4()) {
+			
+			interfaz.getFachada().obtenerCombo4(interfaz.getVentanaSnacks());
+		}
+		if(e.getSource() == interfaz.getVentanaSnacks().getBtnContinue()) {
+			
+			interfaz.getFachada().facturaConsola(interfaz.getVentanaSnacks());
+			
+		}
+		if(e.getSource()==interfaz.getVentanaSnacks().getBtnSalir()) {
+			
+			interfaz.getFachada().regresoSnacksSilla(interfaz.getVentanaSnacks(), interfaz.getVentanaCompraSilla());
+		}
 		
 		
 		

@@ -22,7 +22,7 @@ En el paquete *principal* se encuentra el la clase Main junto con el metodo main
 
 
 ### Bugs Existentes:
-1. Agregar Facade A -VentanaAdmin  -VentanaEstablecerContraseña  -VentanaSnacks  -VentanaPago
+1. Agregar Facade A -VentanaAdmin  -VentanaEstablecerContraseña  -VentanaPago
 2. Hacer que Pelicula y Cine "viajen" por los paneles cono información.
 3. Metodo de pago VentanaPago
 
