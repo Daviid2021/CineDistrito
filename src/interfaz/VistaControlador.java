@@ -32,6 +32,7 @@ public class VistaControlador extends JFrame{
 	private VentanaPeliculaPaseo6 vpPaseo;
 	private VentanaPeliculaScream vpScream;
 	private VentanaPeliculaSpiderman vpSpiderman;
+	private VentanaPago vpago;
 	
 	
 	
@@ -107,6 +108,9 @@ public class VistaControlador extends JFrame{
 		vs = new VentanaSnacks();
 		this.add(vs);
 		
+		vpago = new VentanaPago();
+		this.add(vpago);
+		
 		
 		
 		vi.setVisible(true);
@@ -126,6 +130,7 @@ public class VistaControlador extends JFrame{
 		vrc.setVisible(false);
 		vru.setVisible(false);
 		vs.setVisible(false);
+		vpago.setVisible(false);
 		
 	}
 	
@@ -276,6 +281,11 @@ public class VistaControlador extends JFrame{
 		vru.getBtnIngreso().addActionListener(getControl());
 		vru.getBtnSalir().addActionListener(getControl());
 		
+		vpago.getTbtnBitcoin().addActionListener(getControl());
+		vpago.getTbtnPaypal().addActionListener(getControl());
+		vpago.getBtnFinalizar().addActionListener(getControl());
+		vpago.getBtnSalir().addActionListener(getControl());
+		
 		
 		
 		
@@ -348,6 +358,10 @@ public class VistaControlador extends JFrame{
 	
 	public VentanaRegistroUsuario getVentanaRegistroUsuario() {
 		return vru;
+	}
+	
+	public VentanaPago getVentanaPago() {
+		return vpago;
 	}
 	
 	public Fachada getFachada () {

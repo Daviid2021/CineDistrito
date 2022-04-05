@@ -235,7 +235,7 @@ public class ControladorEvento implements ActionListener, KeyListener{
 			interfaz.getFachada().regresoRegistroClienteIngresoCliente(interfaz.getVentanaRegistroCliente(), interfaz.getVentanaIngresoCliente());
 		}
 		
-		// // // // // // // // // VENTANA REGISTRO CLIENTE// // // // // // // // //
+		// // // // // // // // // VENTANA RECUPERAR CONTRASEÑA// // // // // // // // //
 
 		if(e.getSource() == interfaz.getVentanaRecuperarContraseña().getBtnSalir()) {
 			
@@ -267,12 +267,43 @@ public class ControladorEvento implements ActionListener, KeyListener{
 		if(e.getSource() == interfaz.getVentanaSnacks().getBtnContinue()) {
 			
 			interfaz.getFachada().facturaConsola(interfaz.getVentanaSnacks());
+			interfaz.getFachada().ingresoSnacksPago(interfaz.getVentanaSnacks(), interfaz.getVentanaPago());
 			
 		}
 		if(e.getSource()==interfaz.getVentanaSnacks().getBtnSalir()) {
 			
 			interfaz.getFachada().regresoSnacksSilla(interfaz.getVentanaSnacks(), interfaz.getVentanaCompraSilla());
 		}
+		
+		// // // // // // // // // // // // // //  // // VENTANA PAGO // // // // // // // // // // // // // // // //
+
+		
+		
+		if(e.getSource() == interfaz.getVentanaPago().getTbtnBitcoin() ) {
+			
+			interfaz.getFachada().obtenerPago(interfaz.getVentanaPago());
+			
+		}
+		if (e.getSource() == interfaz.getVentanaPago().getTbtnPaypal()) {
+
+			interfaz.getFachada().obtenerPago(interfaz.getVentanaPago());
+
+		}
+		if(e.getSource() == interfaz.getVentanaPago().getBtnFinalizar()) {
+			
+			interfaz.getFachada().obtenerPago(interfaz.getVentanaPago());
+			interfaz.getFachada().pagoFinal(interfaz.getVentanaCompraSilla(), interfaz.getVentanaSnacks());
+			interfaz.getFachada().regresoPagoCartelera(interfaz.getVentanaPago(),interfaz.getVentanaCartelera());
+			
+		}
+		if(e.getSource() == interfaz.getVentanaPago().getBtnSalir()) {
+			interfaz.getFachada().regresoPagoSnacks(interfaz.getVentanaSnacks(), interfaz.getVentanaPago());
+			
+			
+			
+		}
+		
+		
 		
 		// // // // // // // // // // // // // //  // // VENTANA ADMIN // // // // // // // // // // // // // // // //
 		

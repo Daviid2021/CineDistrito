@@ -1073,6 +1073,14 @@ public class VentanaCompraSilla extends JPanel {
 		return spnPreferencial;
 	}
 	
+	public int getIntSpnGeneral() {
+		return (Integer) spnGeneral.getValue();
+	}
+	
+	public int getIntSpnPreferencial() {
+		return (Integer) spnPreferencial.getValue();
+	}
+	
 
 /*
 	

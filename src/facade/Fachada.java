@@ -13,6 +13,7 @@ import interfaz.VentanaCompraSilla;
 import interfaz.VentanaEstablecerContraseña;
 import interfaz.VentanaIngresoCliente;
 import interfaz.VentanaInicio;
+import interfaz.VentanaPago;
 import interfaz.VentanaRecuperarContraseña;
 import interfaz.VentanaRegistroCliente;
 import interfaz.VentanaRegistroUsuario;
@@ -490,6 +491,13 @@ public class Fachada {
 	}
 	
 	// // // // // // // // // VENTANA SNACKS// // // // // // // // //
+	
+	public void ingresoSnacksPago(VentanaSnacks vs, VentanaPago vp) {
+		
+		System.out.println("ingresó a VentanaPago");
+		vs.setVisible(false);
+		vp.setVisible(true);
+	}
 
 
 	public void obtenerCombo1(VentanaSnacks vs) {
@@ -703,6 +711,137 @@ public class Fachada {
 		
 		
 	}
+	/////////////////////////////////////////////////////VETNANA PAGO ////////////////////////////////////
+
+	
+	public void obtenerPago(VentanaPago vpago) {
+		
+
+	if(vpago.getTbtnBitcoin().isSelected() || vpago.getTbtnPaypal().isSelected()) {
+		
+	
+		if(vpago.getTbtnPaypal().isSelected()){
+			ImageIcon Paypal = new ImageIcon("./img/imgBtnPypal.png");
+			vpago.getTbtnPaypal().setIcon(new ImageIcon(Paypal.getImage().getScaledInstance(vpago.getTbtnPaypal().getWidth(),
+					vpago.getTbtnPaypal().getHeight(), Image.SCALE_SMOOTH)));
+			vpago.getTbtnBitcoin().setSelected(false);
+		}else {
+			ImageIcon Paypalbn = new ImageIcon("./img/imgBtnPypalbn.png");
+			vpago.getTbtnPaypal().setIcon(new ImageIcon(Paypalbn.getImage().getScaledInstance(vpago.getTbtnPaypal().getWidth(),
+					vpago.getTbtnPaypal().getHeight(), Image.SCALE_SMOOTH)));
+		}
+		
+		if(vpago.getTbtnBitcoin().isSelected()){
+			ImageIcon Btc = new ImageIcon("./img/imgBtnBitcoin.png");
+			vpago.getTbtnBitcoin().setIcon(new ImageIcon(Btc.getImage().getScaledInstance(vpago.getTbtnBitcoin().getWidth(),
+					vpago.getTbtnBitcoin().getHeight(), Image.SCALE_SMOOTH)));
+			vpago.getTbtnPaypal().setSelected(false);
+		}else {
+			ImageIcon BtcBn = new ImageIcon("./img/imgBtnBitcoinbn.png");
+			vpago.getTbtnBitcoin().setIcon(new ImageIcon(BtcBn.getImage().getScaledInstance(vpago.getTbtnBitcoin().getWidth(),
+					vpago.getTbtnBitcoin().getHeight(), Image.SCALE_SMOOTH)));
+		}
+		
+		
+	}else {
+		
+		JOptionPane.showMessageDialog(null, "Porfavor, Seleccione método de pago", "Pago inválido", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	
+}
+	
+	public void pagoFinal(VentanaCompraSilla vcs, VentanaSnacks vs) {
+		
+		/*
+		 * Las multiplicaciones deberian ir con su respectivo precio   
+		 */
+		int SillasGenerales = (vcs.getIntSpnGeneral() * 15000);
+		int SillasPreferenciales = (vcs.getIntSpnPreferencial() * 70000);
+		int Combo1 = (vs.getIntSpnComb1() * 3500);
+		int Combo2 = (vs.getIntSpnComb2() * 2500);
+		int Combo3 = (vs.getIntSpnComb3() * 500);
+		int Combo4 = (vs.getIntSpnComb4() * 1500);
+		String SillasG ="";
+		String SillasP ="";
+		
+		String Precio="";
+		
+		int Total=0;
+		
+		Componentes = vcs.getComponentesSilla();
+
+
+			
+	
+		
+		if(vcs.getIntSpnGeneral() !=  0 && vcs.getRbtnGeneral().isSelected()) {
+			
+			for (int i=0; i<40; i++) {
+				
+				 if( ( (JToggleButton) Componentes[i]).isSelected() ){
+	                SillasG += ((JToggleButton) Componentes[i]).getName() + "\n";
+	              }
+	          }
+			Precio +="\n"+SillasG+"Sillas Generales ............$"+SillasGenerales+"\n";
+			Total+=SillasGenerales;
+			
+		}
+		if(vcs.getIntSpnPreferencial() !=0 && vcs.getRbtnPreferencial().isSelected()) {
+			
+			for (int j=40; j<60; j++) {
+				
+				 if( ( (JToggleButton) Componentes[j]).isSelected() ){
+	                SillasP += ((JToggleButton) Componentes[j]).getName() + "\n";
+	              }
+	          }
+			Precio +="\n"+SillasP+"Sillas Preferenciales:............$"+SillasPreferenciales+"\n";
+			Total+=SillasPreferenciales;
+
+				
+		}
+		if(vs.getIntSpnComb1() != 0 && vs.getSpnCombo1().isEnabled()) {
+			Precio +="\nCombo(s) 1............................$"+Combo1;
+			Total+=Combo1;
+		}
+		if(vs.getIntSpnComb2() != 0 && vs.getSpnCombo2().isEnabled()) {
+			Precio +="\nCombo(s) 2.............................$"+Combo2;
+			Total+=Combo2;
+		}
+		if(vs.getIntSpnComb3() != 0 && vs.getSpnCombo3().isEnabled()) {
+			Precio +="\nCombo(s) 3..............................$"+Combo3;
+			Total+=Combo3;
+		}
+		if(vs.getIntSpnComb4() != 0 && vs.getSpnCombo4().isEnabled()) {
+			Precio +="\nCombo(s) 4...............................$"+Combo4;
+			Total+=Combo4;
+		}
+		
+		Precio +="\n\nTotal......................................$"+Total;
+		JOptionPane.showMessageDialog(null, Precio, "Factura", JOptionPane.PLAIN_MESSAGE);
+		
+		
+		
+	}
+	
+	public void regresoPagoSnacks(VentanaSnacks vs, VentanaPago vp) {
+		
+		System.out.println("regreso a VentanaSnacks");
+		vs.setVisible(true);
+		vp.setVisible(false);
+	}
+	
+	//En este método se deberian setear todos los valores a 0 - establecer con rojo los asientos que estan seleccionados y desabilitarlos
+	
+	public void regresoPagoCartelera(VentanaPago vp, VentanaCartelera vc) {
+		
+		System.out.println("\n Gracias Por Tu Compra    :D");
+		vp.setVisible(false);
+		vc.setVisible(true);
+		
+	}
+	
+
 	
 	
 	
