@@ -24,6 +24,8 @@ public class VentanaCompraSilla extends JPanel {
 	
 	private Component[] componentes;
 	
+	private JComboBox<String> cmbSalas; //deberia ser de Salas
+	
 	
 	private JToggleButton btnSilla00;
 	private JToggleButton btnSilla01;
@@ -97,10 +99,10 @@ public class VentanaCompraSilla extends JPanel {
 	private JSpinner spnGeneral;
 	private JSpinner spnPreferencial;
 	
+	private JLabel lblPelicula;
+	private JLabel lblCine;
 	
 
-	private String Pelicula;
-	private String Cine;
 	
 	String Sillas ="";
 
@@ -699,16 +701,7 @@ public class VentanaCompraSilla extends JPanel {
 				32, Image.SCALE_SMOOTH)));
 		pnlSillas.add(btnSilla59);
 		
-		
-		JLabel lblPantalla = new JLabel();
-		lblPantalla.setBounds(210, 320, 397, 397);
-		ImageIcon imagenTV = new ImageIcon("./img/imgPantalla.png");
-		lblPantalla.setIcon(new ImageIcon(imagenTV.getImage().getScaledInstance(lblPantalla.getWidth(),
-				lblPantalla.getHeight(), Image.SCALE_SMOOTH)));
-//		lblPantalla.setText("Holaaa");
-		
-		//pnladd(lblPantalla);
-		
+
 		
 		pnlPrincipal.add(pnlSillas);
 		
@@ -720,20 +713,19 @@ public class VentanaCompraSilla extends JPanel {
 		//pnlComplementos.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
 		
 		
-		JComboBox<String> cmbHorario = new JComboBox<String>();
-		cmbHorario.setBounds(0, 15, 190, 30);
-		cmbHorario.addItem("Seleccione Horario");
-		pnlComplementos.add(cmbHorario);
+		cmbSalas = new JComboBox<String>();
+		cmbSalas.setBounds(0, 15, 190, 30);
+		cmbSalas.addItem("Sala 1");
+		cmbSalas.addItem("Sala 2");
+		pnlComplementos.add(cmbSalas);
 		
 		
-		JLabel lblPelicula = new JLabel();
-		lblPelicula.setText("Pelicula: "+Pelicula);
+		lblPelicula = new JLabel();
 		lblPelicula.setBounds(0, 80, 200, 40);
 		lblPelicula.setFont((new Font("Comic Sans MS", 0, 18)));
 		pnlComplementos.add(lblPelicula);
 		
-		JLabel lblCine = new JLabel();
-		lblCine.setText("Cine: "+Cine);
+		lblCine = new JLabel();
 		lblCine.setBounds(0, 120, 200, 40);
 		lblCine.setFont((new Font("Comic Sans MS", 0, 18)));
 		pnlComplementos.add(lblCine);
@@ -745,13 +737,13 @@ public class VentanaCompraSilla extends JPanel {
 		pnlComplementos.add(lblTitulos);
 		
 		JLabel lblCostoGeneral = new JLabel();
-		lblCostoGeneral.setText("$ 15.000");
+		lblCostoGeneral.setText("$ 11.000");
 		lblCostoGeneral.setBounds(0, 240, 100, 40);
 		lblCostoGeneral.setFont((new Font("Comic Sans MS", 0, 11)));
 		pnlComplementos.add(lblCostoGeneral);
 		
 		JLabel lblCostoPreferencial = new JLabel();
-		lblCostoPreferencial.setText("$ 70.000");
+		lblCostoPreferencial.setText("$ 15.000");
 		lblCostoPreferencial.setBounds(0, 290, 100, 40);
 		lblCostoPreferencial.setFont((new Font("Comic Sans MS", 0, 11)));
 		pnlComplementos.add(lblCostoPreferencial);
@@ -797,13 +789,7 @@ public class VentanaCompraSilla extends JPanel {
 		
 
 	}
-	
-	public void recibirPeliculaCine(String Pelicula, String Cine) {
-		
-		this.Pelicula = Pelicula;
-		this.Cine = Cine;
-		
-	}
+
 
 	public JButton getBtnSalir() {
 		return btnSalir;
@@ -1080,6 +1066,24 @@ public class VentanaCompraSilla extends JPanel {
 	public int getIntSpnPreferencial() {
 		return (Integer) spnPreferencial.getValue();
 	}
+	
+	public JComboBox<String> getCmbSalas(){
+		return cmbSalas;
+	}
+	public JLabel getLblPelicula() {
+		return lblPelicula;
+	}
+	public JLabel getLblCine() {
+		return lblCine;
+	}
+	public void setLblPelicula(String Pelicula) {
+		lblPelicula.setText("Pelicula: "+Pelicula);
+	}
+	
+	public void setLblCine(String Cine) {
+		lblCine.setText("Cine: "+Cine);
+	}
+	
 	
 
 /*

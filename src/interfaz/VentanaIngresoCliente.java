@@ -19,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import interfaz.VentanaPeliculas.VentanaPelicula;
-
 public class VentanaIngresoCliente extends JPanel {
 	private String CineSeleccionado;
 	private String PeliculaSeleccionada;

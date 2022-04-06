@@ -16,8 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import interfaz.VentanaPeliculas.VentanaPelicula;
-
 public class VentanaCartelera extends JPanel{
 
 	private JPanel pnlCartelera;
